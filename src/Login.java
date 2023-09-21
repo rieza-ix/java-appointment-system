@@ -1,3 +1,4 @@
+
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
@@ -19,7 +20,8 @@ public class Login extends javax.swing.JPanel {
     private void initComponents() {
 
         logoContainer = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        image = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         loginForm = new javax.swing.JPanel();
         greetingMessage = new javax.swing.JLabel();
         usernameContainer = new javax.swing.JPanel();
@@ -39,21 +41,28 @@ public class Login extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(860, 520));
         setPreferredSize(new java.awt.Dimension(831, 520));
 
-        logoContainer.setBackground(java.awt.SystemColor.activeCaption);
+        logoContainer.setBackground(new java.awt.Color(255, 255, 255));
         logoContainer.setPreferredSize(new java.awt.Dimension(420, 500));
         logoContainer.setLayout(null);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        logoContainer.add(jLabel1);
-        jLabel1.setBounds(0, 0, 400, 520);
+        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
+        image.setText("jLabel1");
+        logoContainer.add(image);
+        image.setBounds(0, 80, 400, 440);
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(202, 70, 2));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("  Book you appointment now!");
+        logoContainer.add(jLabel2);
+        jLabel2.setBounds(0, 0, 400, 70);
 
         loginForm.setBackground(new java.awt.Color(255, 255, 255));
         loginForm.setBorder(null);
         loginForm.setPreferredSize(new java.awt.Dimension(422, 445));
         loginForm.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        greetingMessage.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
+        greetingMessage.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         greetingMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         greetingMessage.setText("Hello there!");
         loginForm.add(greetingMessage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 430, 60));
@@ -156,6 +165,7 @@ public class Login extends javax.swing.JPanel {
         loginButton.setForeground(new java.awt.Color(255, 255, 255));
         loginButton.setText("Log in");
         loginButton.setBorder(null);
+        loginButton.setBorderPainted(false);
         loginButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         loginButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         loginButton.addActionListener(new java.awt.event.ActionListener() {
@@ -215,7 +225,8 @@ public class Login extends javax.swing.JPanel {
     private javax.swing.JLabel forgotPassword;
     private javax.swing.JButton google;
     private javax.swing.JLabel greetingMessage;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel image;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton loginButton;
     private javax.swing.JPanel loginForm;
     private javax.swing.JLabel loginLabel;
