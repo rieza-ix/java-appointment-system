@@ -61,7 +61,7 @@ public class LoginForm extends javax.swing.JPanel {
 
         greetingMessage.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         greetingMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        greetingMessage.setText("Hello there!");
+        greetingMessage.setText("Welcome!");
         loginForm.add(greetingMessage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 430, 60));
 
         usernameContainer.setBackground(new java.awt.Color(255, 255, 255));
