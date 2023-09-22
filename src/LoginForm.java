@@ -1,12 +1,11 @@
 
-import java.awt.Image;
-import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 // @author riezxcvii
-public class Login extends javax.swing.JPanel {
+public class LoginForm extends javax.swing.JPanel {
 
-    // Creates new form Login
-    public Login() {
+    // Creates new form LoginForm
+    public LoginForm() {
         initComponents();
     }
 
@@ -34,6 +33,7 @@ public class Login extends javax.swing.JPanel {
         forgotPassword = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
         google = new javax.swing.JButton();
+        showPassword = new javax.swing.JCheckBox();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
@@ -48,7 +48,7 @@ public class Login extends javax.swing.JPanel {
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
         image.setText("jLabel1");
         logoContainer.add(image);
-        image.setBounds(0, 80, 400, 440);
+        image.setBounds(0, 70, 400, 440);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(202, 70, 2));
@@ -65,7 +65,7 @@ public class Login extends javax.swing.JPanel {
         greetingMessage.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         greetingMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         greetingMessage.setText("Hello there!");
-        loginForm.add(greetingMessage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 430, 60));
+        loginForm.add(greetingMessage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 430, 60));
 
         usernameContainer.setBackground(new java.awt.Color(255, 255, 255));
         usernameContainer.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -158,15 +158,15 @@ public class Login extends javax.swing.JPanel {
         forgotPassword.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         forgotPassword.setText("  Forgot password? ");
         forgotPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        loginForm.add(forgotPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 260, -1));
+        loginForm.add(forgotPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 110, -1));
 
         loginButton.setBackground(new java.awt.Color(202, 70, 2));
         loginButton.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         loginButton.setForeground(new java.awt.Color(255, 255, 255));
         loginButton.setText("Log in");
-        loginButton.setBorder(null);
         loginButton.setBorderPainted(false);
-        loginButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        loginButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loginButton.setFocusPainted(false);
         loginButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,6 +180,7 @@ public class Login extends javax.swing.JPanel {
         google.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/google.png"))); // NOI18N
         google.setText(" Log in with Google");
         google.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        google.setFocusPainted(false);
         google.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         google.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,6 +189,18 @@ public class Login extends javax.swing.JPanel {
         });
         loginForm.add(google, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, 270, 40));
 
+        showPassword.setBackground(new java.awt.Color(255, 255, 255));
+        showPassword.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        showPassword.setText("Show password");
+        showPassword.setFocusPainted(false);
+        showPassword.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        showPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showPasswordActionPerformed(evt);
+            }
+        });
+        loginForm.add(showPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, 110, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -195,8 +208,8 @@ public class Login extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(logoContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(loginForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(loginForm, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,12 +227,28 @@ public class Login extends javax.swing.JPanel {
     }//GEN-LAST:event_googleActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        System.out.println("Button clicked!");
+        if (username.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Enter you username.", "Username field empty.", JOptionPane.INFORMATION_MESSAGE);
+        } else if (password.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Enter your password.", "Password field empty.", JOptionPane.INFORMATION_MESSAGE);
+        } else if (username.getText().contains("riezxcvii") && password.getText().contains("rmjb100900.")) {
+            JOptionPane.showMessageDialog(null, "Login successful.", "Access granted.", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid credentials. Check your username and password.", "Access denied.", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordActionPerformed
+
+    private void showPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPasswordActionPerformed
+        if (showPassword.isSelected()) {
+            password.setEchoChar((char) 0);
+        } else {
+            password.setEchoChar('*');
+        }
+    }//GEN-LAST:event_showPasswordActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel forgotPassword;
@@ -234,8 +263,10 @@ public class Login extends javax.swing.JPanel {
     private javax.swing.JPasswordField password;
     private javax.swing.JPanel passwordContainer;
     private javax.swing.JLabel passwordLabel;
+    private javax.swing.JCheckBox showPassword;
     private javax.swing.JTextField username;
     private javax.swing.JPanel usernameContainer;
     private javax.swing.JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables
+
 }
