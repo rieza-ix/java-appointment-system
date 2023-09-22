@@ -1,9 +1,9 @@
 package Frames;
 
-public class Admin extends javax.swing.JPanel {
+public class AdminDashboard extends javax.swing.JPanel {
 
     // Creates new form LoginForm
-    public Admin() {
+    public AdminDashboard() {
         initComponents();
     }
 

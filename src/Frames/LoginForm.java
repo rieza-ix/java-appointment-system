@@ -238,7 +238,7 @@ public class LoginForm extends javax.swing.JPanel {
         } else if (username.getText().contains("riezxcvii") && password.getText().contains("rmjb100900.")) {
 //            JOptionPane.showMessageDialog(null, "Login successful.", "Access granted.", JOptionPane.INFORMATION_MESSAGE);
             Frame frame = new Frame();
-            frame.viewFrame("Frames.Admin", "Appointment System - Dashboard");
+            frame.viewFrame("Frames.AdminDashboard", "Appointment System - Dashboard");
         } else {
             JOptionPane.showMessageDialog(null, "Invalid credentials. Check your username and password.", "Access denied.", JOptionPane.INFORMATION_MESSAGE);
         }
