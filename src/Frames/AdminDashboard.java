@@ -12,12 +12,9 @@ public class AdminDashboard extends javax.swing.JPanel {
     private void initComponents() {
 
         navBar = new javax.swing.JPanel();
+        greetingMessage = new javax.swing.JLabel();
         bookAppointmentContainer = new javax.swing.JPanel();
-        appointmentContainer = new javax.swing.JPanel();
-        cancelledContainer = new javax.swing.JPanel();
-        ongoingAppointments = new javax.swing.JPanel();
-        upcomingAppointments = new javax.swing.JPanel();
-        appointmentContainer1 = new javax.swing.JPanel();
+        bookAppointmentButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
@@ -27,119 +24,65 @@ public class AdminDashboard extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         navBar.setBackground(new java.awt.Color(202, 70, 2));
+        navBar.setToolTipText("");
+        navBar.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+
+        greetingMessage.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
+        greetingMessage.setForeground(new java.awt.Color(255, 255, 255));
+        greetingMessage.setText("Hello there!");
 
         javax.swing.GroupLayout navBarLayout = new javax.swing.GroupLayout(navBar);
         navBar.setLayout(navBarLayout);
         navBarLayout.setHorizontalGroup(
             navBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(navBarLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(greetingMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(683, Short.MAX_VALUE))
         );
         navBarLayout.setVerticalGroup(
             navBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 45, Short.MAX_VALUE)
+            .addGroup(navBarLayout.createSequentialGroup()
+                .addComponent(greetingMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        add(navBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 859, -1));
+        add(navBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 859, 40));
 
-        bookAppointmentContainer.setBackground(new java.awt.Color(0, 0, 0));
+        bookAppointmentContainer.setBackground(new java.awt.Color(255, 255, 255));
+        bookAppointmentContainer.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(202, 70, 2), 2, true));
+
+        bookAppointmentButton.setBackground(new java.awt.Color(202, 70, 2));
+        bookAppointmentButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        bookAppointmentButton.setForeground(new java.awt.Color(255, 255, 255));
+        bookAppointmentButton.setText("Book Appointment");
+        bookAppointmentButton.setFocusPainted(false);
 
         javax.swing.GroupLayout bookAppointmentContainerLayout = new javax.swing.GroupLayout(bookAppointmentContainer);
         bookAppointmentContainer.setLayout(bookAppointmentContainerLayout);
         bookAppointmentContainerLayout.setHorizontalGroup(
             bookAppointmentContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(bookAppointmentContainerLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(bookAppointmentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         bookAppointmentContainerLayout.setVerticalGroup(
             bookAppointmentContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookAppointmentContainerLayout.createSequentialGroup()
+                .addContainerGap(428, Short.MAX_VALUE)
+                .addComponent(bookAppointmentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
 
-        add(bookAppointmentContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(559, 42, -1, 480));
-
-        appointmentContainer.setBackground(new java.awt.Color(51, 153, 255));
-
-        javax.swing.GroupLayout appointmentContainerLayout = new javax.swing.GroupLayout(appointmentContainer);
-        appointmentContainer.setLayout(appointmentContainerLayout);
-        appointmentContainerLayout.setHorizontalGroup(
-            appointmentContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 157, Short.MAX_VALUE)
-        );
-        appointmentContainerLayout.setVerticalGroup(
-            appointmentContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 112, Short.MAX_VALUE)
-        );
-
-        add(appointmentContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 70, -1, -1));
-
-        cancelledContainer.setBackground(new java.awt.Color(51, 153, 255));
-
-        javax.swing.GroupLayout cancelledContainerLayout = new javax.swing.GroupLayout(cancelledContainer);
-        cancelledContainer.setLayout(cancelledContainerLayout);
-        cancelledContainerLayout.setHorizontalGroup(
-            cancelledContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 145, Short.MAX_VALUE)
-        );
-        cancelledContainerLayout.setVerticalGroup(
-            cancelledContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 112, Short.MAX_VALUE)
-        );
-
-        add(cancelledContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(389, 70, -1, -1));
-
-        ongoingAppointments.setBackground(new java.awt.Color(255, 102, 102));
-
-        javax.swing.GroupLayout ongoingAppointmentsLayout = new javax.swing.GroupLayout(ongoingAppointments);
-        ongoingAppointments.setLayout(ongoingAppointmentsLayout);
-        ongoingAppointmentsLayout.setHorizontalGroup(
-            ongoingAppointmentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 240, Short.MAX_VALUE)
-        );
-        ongoingAppointmentsLayout.setVerticalGroup(
-            ongoingAppointmentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 290, Short.MAX_VALUE)
-        );
-
-        add(ongoingAppointments, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 207, 240, 290));
-
-        upcomingAppointments.setBackground(new java.awt.Color(255, 102, 102));
-
-        javax.swing.GroupLayout upcomingAppointmentsLayout = new javax.swing.GroupLayout(upcomingAppointments);
-        upcomingAppointments.setLayout(upcomingAppointmentsLayout);
-        upcomingAppointmentsLayout.setHorizontalGroup(
-            upcomingAppointmentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 241, Short.MAX_VALUE)
-        );
-        upcomingAppointmentsLayout.setVerticalGroup(
-            upcomingAppointmentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        add(upcomingAppointments, new org.netbeans.lib.awtextra.AbsoluteConstraints(292, 207, -1, 290));
-
-        appointmentContainer1.setBackground(new java.awt.Color(51, 153, 255));
-
-        javax.swing.GroupLayout appointmentContainer1Layout = new javax.swing.GroupLayout(appointmentContainer1);
-        appointmentContainer1.setLayout(appointmentContainer1Layout);
-        appointmentContainer1Layout.setHorizontalGroup(
-            appointmentContainer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 160, Short.MAX_VALUE)
-        );
-        appointmentContainer1Layout.setVerticalGroup(
-            appointmentContainer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 112, Short.MAX_VALUE)
-        );
-
-        add(appointmentContainer1, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 70, 160, -1));
+        add(bookAppointmentContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(559, 32, -1, 490));
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel appointmentContainer;
-    private javax.swing.JPanel appointmentContainer1;
+    private javax.swing.JButton bookAppointmentButton;
     private javax.swing.JPanel bookAppointmentContainer;
-    private javax.swing.JPanel cancelledContainer;
+    private javax.swing.JLabel greetingMessage;
     private javax.swing.JPanel navBar;
-    private javax.swing.JPanel ongoingAppointments;
-    private javax.swing.JPanel upcomingAppointments;
     // End of variables declaration//GEN-END:variables
 
 }
