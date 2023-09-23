@@ -48,7 +48,7 @@ public class LoginForm extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(202, 70, 2));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("  Book you appointment now!");
+        jLabel2.setText("  Book your appointment now!");
         logoContainer.add(jLabel2);
         jLabel2.setBounds(10, 0, 390, 70);
 
@@ -220,7 +220,7 @@ public class LoginForm extends javax.swing.JPanel {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         if (username.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Enter you username.", "Username field empty.", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Enter your username.", "Username field empty.", JOptionPane.INFORMATION_MESSAGE);
         } else if (password.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Enter your password.", "Password field empty.", JOptionPane.INFORMATION_MESSAGE);
         } else if (username.getText().contains("riezxcvii") && password.getText().contains("rmjb100900.")) {
