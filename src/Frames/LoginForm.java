@@ -93,8 +93,7 @@ public class LoginForm extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(usernameLabel)
                 .addGap(8, 8, 8)
-                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
         );
 
         loginForm.add(usernameContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 270, 70));
@@ -129,8 +128,7 @@ public class LoginForm extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(passwordLabel)
                 .addGap(8, 8, 8)
-                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
         );
 
         loginForm.add(passwordContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 270, 70));
@@ -166,7 +164,7 @@ public class LoginForm extends javax.swing.JPanel {
                 signUpButtonActionPerformed(evt);
             }
         });
-        loginForm.add(signUpButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 150, 20));
+        loginForm.add(signUpButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 190, 20));
 
         showPassword.setBackground(new java.awt.Color(255, 255, 255));
         showPassword.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -197,7 +195,7 @@ public class LoginForm extends javax.swing.JPanel {
                 forgotPasswordActionPerformed(evt);
             }
         });
-        loginForm.add(forgotPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 100, 20));
+        loginForm.add(forgotPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 130, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -251,7 +249,8 @@ public class LoginForm extends javax.swing.JPanel {
     }//GEN-LAST:event_forgotPasswordActionPerformed
 
     private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
-        // TODO add your handling code here:
+        Frame frame = new Frame();
+        frame.viewFrame("Frames.RegistrationForm", "Registration Form");
     }//GEN-LAST:event_signUpButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
