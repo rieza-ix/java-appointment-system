@@ -25,17 +25,15 @@ public class LoginForm extends javax.swing.JPanel {
         passwordContainer = new javax.swing.JPanel();
         password = new javax.swing.JPasswordField();
         passwordLabel = new javax.swing.JLabel();
-        loginLabel = new javax.swing.JLabel();
-        forgotPassword = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
-        google = new javax.swing.JButton();
-        showPassword = new javax.swing.JCheckBox();
         signUpButton = new javax.swing.JButton();
+        showPassword = new javax.swing.JCheckBox();
+        forgotPassword = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
         setMaximumSize(new java.awt.Dimension(1365, 730));
-        setMinimumSize(new java.awt.Dimension(860, 520));
+        setMinimumSize(new java.awt.Dimension(831, 520));
         setPreferredSize(new java.awt.Dimension(831, 520));
 
         logoContainer.setBackground(new java.awt.Color(255, 255, 255));
@@ -45,14 +43,14 @@ public class LoginForm extends javax.swing.JPanel {
         image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
         image.setText("jLabel1");
         logoContainer.add(image);
-        image.setBounds(20, 70, 380, 440);
+        image.setBounds(10, 70, 390, 440);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(202, 70, 2));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("  Book you appointment now!");
         logoContainer.add(jLabel2);
-        jLabel2.setBounds(20, 0, 380, 70);
+        jLabel2.setBounds(10, 0, 390, 70);
 
         loginForm.setBackground(new java.awt.Color(255, 255, 255));
         loginForm.setBorder(null);
@@ -62,7 +60,7 @@ public class LoginForm extends javax.swing.JPanel {
         greetingMessage.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         greetingMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         greetingMessage.setText("Welcome!");
-        loginForm.add(greetingMessage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 430, 60));
+        loginForm.add(greetingMessage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 430, 60));
 
         usernameContainer.setBackground(new java.awt.Color(255, 255, 255));
         usernameContainer.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -87,7 +85,7 @@ public class LoginForm extends javax.swing.JPanel {
             .addComponent(username, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(usernameContainerLayout.createSequentialGroup()
                 .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 187, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         usernameContainerLayout.setVerticalGroup(
             usernameContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,7 +97,7 @@ public class LoginForm extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        loginForm.add(usernameContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 270, 70));
+        loginForm.add(usernameContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 270, 70));
 
         passwordContainer.setBackground(new java.awt.Color(255, 255, 255));
         passwordContainer.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -123,7 +121,7 @@ public class LoginForm extends javax.swing.JPanel {
             .addComponent(password, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(passwordContainerLayout.createSequentialGroup()
                 .addComponent(passwordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 192, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         passwordContainerLayout.setVerticalGroup(
             passwordContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,20 +133,7 @@ public class LoginForm extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        loginForm.add(passwordContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 270, 70));
-
-        loginLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        loginLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        loginLabel.setText("----------------  or  ----------------");
-        loginForm.add(loginLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 430, -1));
-
-        forgotPassword.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        forgotPassword.setForeground(new java.awt.Color(0, 51, 153));
-        forgotPassword.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        forgotPassword.setText("Forgot password? ");
-        forgotPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        forgotPassword.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        loginForm.add(forgotPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 110, -1));
+        loginForm.add(passwordContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 270, 70));
 
         loginButton.setBackground(new java.awt.Color(202, 70, 2));
         loginButton.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -163,21 +148,25 @@ public class LoginForm extends javax.swing.JPanel {
                 loginButtonActionPerformed(evt);
             }
         });
-        loginForm.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 270, 40));
+        loginForm.add(loginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 270, 40));
 
-        google.setBackground(new java.awt.Color(255, 255, 255));
-        google.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        google.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/google.png"))); // NOI18N
-        google.setText(" Log in with Google");
-        google.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        google.setFocusPainted(false);
-        google.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        google.addActionListener(new java.awt.event.ActionListener() {
+        signUpButton.setBackground(new java.awt.Color(255, 255, 255));
+        signUpButton.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        signUpButton.setForeground(new java.awt.Color(0, 51, 153));
+        signUpButton.setText("No account? Sign up here.");
+        signUpButton.setBorder(null);
+        signUpButton.setBorderPainted(false);
+        signUpButton.setContentAreaFilled(false);
+        signUpButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        signUpButton.setFocusPainted(false);
+        signUpButton.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        signUpButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        signUpButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                googleActionPerformed(evt);
+                signUpButtonActionPerformed(evt);
             }
         });
-        loginForm.add(google, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 440, 270, 40));
+        loginForm.add(signUpButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 150, 20));
 
         showPassword.setBackground(new java.awt.Color(255, 255, 255));
         showPassword.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -190,20 +179,25 @@ public class LoginForm extends javax.swing.JPanel {
                 showPasswordActionPerformed(evt);
             }
         });
-        loginForm.add(showPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 120, -1));
+        loginForm.add(showPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 110, -1));
 
-        signUpButton.setBackground(new java.awt.Color(255, 255, 255));
-        signUpButton.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        signUpButton.setText("Sign up");
-        signUpButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        signUpButton.setFocusPainted(false);
-        signUpButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        signUpButton.addActionListener(new java.awt.event.ActionListener() {
+        forgotPassword.setBackground(new java.awt.Color(255, 255, 255));
+        forgotPassword.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        forgotPassword.setForeground(new java.awt.Color(0, 51, 153));
+        forgotPassword.setText("Forgot password?");
+        forgotPassword.setBorder(null);
+        forgotPassword.setBorderPainted(false);
+        forgotPassword.setContentAreaFilled(false);
+        forgotPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        forgotPassword.setFocusPainted(false);
+        forgotPassword.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        forgotPassword.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        forgotPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                signUpButtonActionPerformed(evt);
+                forgotPasswordActionPerformed(evt);
             }
         });
-        loginForm.add(signUpButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 270, 40));
+        loginForm.add(forgotPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 100, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -213,7 +207,7 @@ public class LoginForm extends javax.swing.JPanel {
                 .addComponent(logoContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(loginForm, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 35, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,10 +219,6 @@ public class LoginForm extends javax.swing.JPanel {
     private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameActionPerformed
-
-    private void googleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_googleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_googleActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         if (username.getText().equals("")) {
@@ -256,19 +246,21 @@ public class LoginForm extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_showPasswordActionPerformed
 
+    private void forgotPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forgotPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_forgotPasswordActionPerformed
+
     private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_signUpButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel forgotPassword;
-    private javax.swing.JButton google;
+    private javax.swing.JButton forgotPassword;
     private javax.swing.JLabel greetingMessage;
     private javax.swing.JLabel image;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton loginButton;
     private javax.swing.JPanel loginForm;
-    private javax.swing.JLabel loginLabel;
     private javax.swing.JPanel logoContainer;
     private javax.swing.JPasswordField password;
     private javax.swing.JPanel passwordContainer;
