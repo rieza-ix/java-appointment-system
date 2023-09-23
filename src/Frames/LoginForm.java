@@ -5,7 +5,6 @@ import javax.swing.JOptionPane;
 
 public class LoginForm extends javax.swing.JPanel {
 
-    // Creates new form LoginForm
     public LoginForm() {
         initComponents();
     }
@@ -224,7 +223,6 @@ public class LoginForm extends javax.swing.JPanel {
         } else if (password.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Enter your password.", "Password field empty.", JOptionPane.INFORMATION_MESSAGE);
         } else if (username.getText().contains("riezxcvii") && password.getText().contains("rmjb100900.")) {
-//            JOptionPane.showMessageDialog(null, "Login successful.", "Access granted.", JOptionPane.INFORMATION_MESSAGE);
             Frame frame = new Frame();
             frame.viewFrame("Frames.AdminDashboard", "Appointment System - Dashboard");
         } else {
