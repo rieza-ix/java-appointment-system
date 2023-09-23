@@ -1,6 +1,7 @@
 package Frames;
 
 import Functions.Frame;
+import Functions.RegisterUser;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -245,29 +246,9 @@ public class RegistrationForm extends javax.swing.JPanel {
     }//GEN-LAST:event_showPasswordActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/" + "appointment_system", "root", "");
-            String sql = "INSERT INTO user_account(last_name, first_name, phone_number, email_address, username, password, role, status)" + "VALUES(?,?,?,?,?,?,?,?)";
-            PreparedStatement statement = con.prepareStatement(sql);
-            statement.setString(1, lastName.getText());
-            statement.setString(2, firstName.getText());
-            statement.setString(3, phoneNumber.getText());
-            statement.setString(4, emailAddress.getText());
-            statement.setString(5, username.getText());
-            statement.setString(6, password.getText());
-            statement.setString(7, "Client");
-            statement.setString(8, "1");
-            statement.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Account registered successfully.", "Registration Form", JOptionPane.INFORMATION_MESSAGE);
-            statement.close();
-            con.close();
-        } catch (Exception e) {
-            System.out.println(e);
-            JOptionPane.showMessageDialog(null, "There was an error with your account registration.", "Registration Form", JOptionPane.INFORMATION_MESSAGE);
-        }
-        Frame frame = new Frame();
-        frame.viewFrame("Frames.LoginForm", "Appointment System");
+        RegisterUser registerUser = new RegisterUser();
+        registerUser.register(lastName.getText(), firstName.getText(), phoneNumber.getText(), emailAddress.getText(), username.getText(), password.getText());
+
     }//GEN-LAST:event_registerButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
