@@ -11,7 +11,6 @@ public class App {
             public void run() {
 
                 ConnectDatabase db = new ConnectDatabase();
-
                 db.checkConnection();
 
                 if (db.isConnected == true) {

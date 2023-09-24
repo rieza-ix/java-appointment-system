@@ -11,6 +11,7 @@ public class RegisterUser {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/" + "appointment_system", "root", "");
+
             String sql = "INSERT INTO user_account(last_name, first_name, phone_number, email_address, username, password, role, status)" + "VALUES(?,?,?,?,?,?,?,?)";
             PreparedStatement statement = con.prepareStatement(sql);
             statement.setString(1, lastName);
@@ -22,6 +23,7 @@ public class RegisterUser {
             statement.setString(7, "Client");
             statement.setString(8, "1");
             statement.executeUpdate();
+
             JOptionPane.showMessageDialog(null, "Account registered successfully.", "Registration Form", JOptionPane.INFORMATION_MESSAGE);
             statement.close();
             con.close();

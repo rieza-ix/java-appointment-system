@@ -2,9 +2,6 @@ package Frames;
 
 import Functions.Frame;
 import Functions.RegisterUser;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;

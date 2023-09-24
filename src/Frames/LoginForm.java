@@ -1,6 +1,7 @@
 package Frames;
 
 import Functions.Frame;
+import Functions.LoginValidation;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -69,11 +70,6 @@ public class LoginForm extends javax.swing.JPanel {
         username.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         username.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         username.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        username.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameActionPerformed(evt);
-            }
-        });
 
         usernameLabel.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         usernameLabel.setText("Username");
@@ -104,11 +100,6 @@ public class LoginForm extends javax.swing.JPanel {
 
         password.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         password.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
-        password.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordActionPerformed(evt);
-            }
-        });
 
         passwordLabel.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         passwordLabel.setText("Password");
@@ -215,26 +206,23 @@ public class LoginForm extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernameActionPerformed
-
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        if (username.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Enter your username.", "Login Form", JOptionPane.INFORMATION_MESSAGE);
-        } else if (password.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Enter your password.", "Login Form", JOptionPane.INFORMATION_MESSAGE);
-        } else if (username.getText().contains("riezxcvii") && password.getText().contains("rmjb100900.")) {
+        String usernameText = username.getText();
+        String passwordText = password.getText();
+
+        LoginValidation validate = new LoginValidation();
+        boolean isValid = validate.validateLogin(usernameText, passwordText);
+
+        if (isValid) {
             Frame frame = new Frame();
             frame.viewFrame("Frames.AdminDashboard", "Appointment System - Dashboard");
+            JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            currentFrame.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Invalid credentials. Check your username and password.", "Login Form", JOptionPane.ERROR_MESSAGE);
+            password.setText("");
         }
     }//GEN-LAST:event_loginButtonActionPerformed
-
-    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordActionPerformed
 
     private void showPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPasswordActionPerformed
         if (showPassword.isSelected()) {
@@ -249,10 +237,10 @@ public class LoginForm extends javax.swing.JPanel {
     }//GEN-LAST:event_forgotPasswordActionPerformed
 
     private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
-        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        currentFrame.dispose();
         Frame frame = new Frame();
         frame.viewFrame("Frames.RegistrationForm", "Registration Form");
+        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        currentFrame.dispose();
     }//GEN-LAST:event_signUpButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
