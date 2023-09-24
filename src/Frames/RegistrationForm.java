@@ -5,7 +5,9 @@ import Functions.RegisterUser;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 public class RegistrationForm extends javax.swing.JPanel {
 
@@ -233,6 +235,8 @@ public class RegistrationForm extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        currentFrame.dispose();
         Frame frame = new Frame();
         frame.viewFrame("Frames.LoginForm", "Appointment System");
     }//GEN-LAST:event_cancelButtonActionPerformed
@@ -246,9 +250,21 @@ public class RegistrationForm extends javax.swing.JPanel {
     }//GEN-LAST:event_showPasswordActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        RegisterUser registerUser = new RegisterUser();
-        registerUser.register(lastName.getText(), firstName.getText(), phoneNumber.getText(), emailAddress.getText(), username.getText(), password.getText());
+        String lastNameText = lastName.getText();
+        String firstNameText = firstName.getText();
+        String phoneNumberText = phoneNumber.getText();
+        String emailAddressText = emailAddress.getText();
+        String usernameText = username.getText();
+        String passwordText = password.getText().toString();
 
+        if (lastNameText.isEmpty() || firstNameText.isEmpty() || phoneNumberText.isEmpty() || emailAddressText.isEmpty() || usernameText.isEmpty() || passwordText.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please fill in all fields.", "Registration Form", JOptionPane.ERROR_MESSAGE);
+        } else {
+            RegisterUser registerUser = new RegisterUser();
+            registerUser.register(lastNameText, firstNameText, phoneNumberText, emailAddressText, usernameText, passwordText);
+            JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            currentFrame.dispose();
+        }
     }//GEN-LAST:event_registerButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

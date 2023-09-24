@@ -18,7 +18,7 @@ public class App {
                     Frame frame = new Frame();
                     frame.viewFrame("Frames.LoginForm", "Appointment System");
                 } else {
-                    JOptionPane.showMessageDialog(null, "Error connecting to database.", "Connection failed.", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error connecting to database.", "Connection failed.", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

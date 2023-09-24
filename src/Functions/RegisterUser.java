@@ -27,7 +27,7 @@ public class RegisterUser {
             con.close();
         } catch (Exception e) {
             System.out.println(e);
-            JOptionPane.showMessageDialog(null, "There was an error with your account registration.", "Registration Form", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "There was an error with your account registration.", "Registration Form", JOptionPane.ERROR_MESSAGE);
         }
         Frame frame = new Frame();
         frame.viewFrame("Frames.LoginForm", "Appointment System");

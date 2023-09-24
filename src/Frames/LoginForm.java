@@ -1,7 +1,9 @@
 package Frames;
 
 import Functions.Frame;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 public class LoginForm extends javax.swing.JPanel {
 
@@ -219,14 +221,14 @@ public class LoginForm extends javax.swing.JPanel {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         if (username.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Enter your username.", "Username field empty.", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Enter your username.", "Login Form", JOptionPane.INFORMATION_MESSAGE);
         } else if (password.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Enter your password.", "Password field empty.", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Enter your password.", "Login Form", JOptionPane.INFORMATION_MESSAGE);
         } else if (username.getText().contains("riezxcvii") && password.getText().contains("rmjb100900.")) {
             Frame frame = new Frame();
             frame.viewFrame("Frames.AdminDashboard", "Appointment System - Dashboard");
         } else {
-            JOptionPane.showMessageDialog(null, "Invalid credentials. Check your username and password.", "Access denied.", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Invalid credentials. Check your username and password.", "Login Form", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 
@@ -247,6 +249,8 @@ public class LoginForm extends javax.swing.JPanel {
     }//GEN-LAST:event_forgotPasswordActionPerformed
 
     private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
+        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        currentFrame.dispose();
         Frame frame = new Frame();
         frame.viewFrame("Frames.RegistrationForm", "Registration Form");
     }//GEN-LAST:event_signUpButtonActionPerformed
