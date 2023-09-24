@@ -215,7 +215,7 @@ public class LoginForm extends javax.swing.JPanel {
 
         if (isValid) {
             Frame frame = new Frame();
-            frame.viewFrame("Frames.AdminDashboard", "Appointment System - Dashboard");
+            frame.viewFrame("Frames.AdminDashboard", "Appointment System - Admin Dashboard");
             JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
             currentFrame.dispose();
         } else {
