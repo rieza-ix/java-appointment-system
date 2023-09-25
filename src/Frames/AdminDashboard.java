@@ -1,7 +1,13 @@
 package Frames;
 
 import Functions.Frame;
+import Functions.RegisterUser;
+import Functions.BookAppointment;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 public class AdminDashboard extends javax.swing.JPanel {
@@ -22,13 +28,13 @@ public class AdminDashboard extends javax.swing.JPanel {
         profile = new javax.swing.JLabel();
         bookForm = new javax.swing.JPanel();
         formTitle = new javax.swing.JLabel();
-        time = new javax.swing.JFormattedTextField();
-        date = new javax.swing.JFormattedTextField();
         dateLabel = new javax.swing.JLabel();
         timeLabel = new javax.swing.JLabel();
         purposeLabel = new javax.swing.JLabel();
         purpose = new javax.swing.JTextField();
         bookAppointmentButton = new javax.swing.JButton();
+        date = new com.toedter.calendar.JDateChooser();
+        time = new javax.swing.JFormattedTextField();
         upcomingContainer = new javax.swing.JPanel();
         upcomingContainerTitle = new javax.swing.JLabel();
         allAppointmentsContainer = new javax.swing.JPanel();
@@ -100,23 +106,6 @@ public class AdminDashboard extends javax.swing.JPanel {
         formTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         formTitle.setText("Add an appointment");
 
-        time.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        time.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
-        time.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        time.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                timeActionPerformed(evt);
-            }
-        });
-
-        date.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        date.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        date.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dateActionPerformed(evt);
-            }
-        });
-
         dateLabel.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         dateLabel.setText("Date");
 
@@ -127,6 +116,7 @@ public class AdminDashboard extends javax.swing.JPanel {
         purposeLabel.setText("Purpose");
 
         purpose.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        purpose.setActionCommand("<Not Set>");
         purpose.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
 
         bookAppointmentButton.setBackground(new java.awt.Color(202, 70, 2));
@@ -140,6 +130,16 @@ public class AdminDashboard extends javax.swing.JPanel {
             }
         });
 
+        date.setBackground(new java.awt.Color(255, 255, 255));
+        date.setBorder(null);
+        date.setDateFormatString("yyyy-MM-dd");
+        date.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+
+        time.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
+        time.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
+        time.setFocusLostBehavior(javax.swing.JFormattedTextField.COMMIT);
+        time.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+
         javax.swing.GroupLayout bookFormLayout = new javax.swing.GroupLayout(bookForm);
         bookForm.setLayout(bookFormLayout);
         bookFormLayout.setHorizontalGroup(
@@ -148,13 +148,13 @@ public class AdminDashboard extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookFormLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(bookFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(time)
-                    .addComponent(date)
                     .addComponent(dateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(timeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(purposeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(purpose)
-                    .addComponent(bookAppointmentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bookAppointmentButton, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                    .addComponent(date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(time))
                 .addGap(43, 43, 43))
         );
         bookFormLayout.setVerticalGroup(
@@ -252,16 +252,23 @@ public class AdminDashboard extends javax.swing.JPanel {
         add(cancelledContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 70, 195, 143));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void dateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dateActionPerformed
-
-    private void timeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_timeActionPerformed
-
     private void bookAppointmentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookAppointmentButtonActionPerformed
-        // TODO add your handling code here:
+        Date selectedDate = date.getDate();
+        String timeText = time.getText();
+        String purposeText = purpose.getText();
+
+        if (selectedDate == null || timeText.isEmpty() || purposeText.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please fill in all fields.", "Book Appointment", JOptionPane.ERROR_MESSAGE);
+        } else {
+            // Clear the date field
+            date.setDate(null);
+            time.setText("");
+            purpose.setText("");
+
+            // Call the book method with the selectedDate, timeText, and purposeText
+            BookAppointment ba = new BookAppointment();
+            ba.book(selectedDate, timeText, purposeText);
+        }
     }//GEN-LAST:event_bookAppointmentButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -272,7 +279,7 @@ public class AdminDashboard extends javax.swing.JPanel {
     private javax.swing.JPanel cancelledContainer;
     private javax.swing.JLabel cancelledLabel;
     private javax.swing.JLabel clients;
-    private javax.swing.JFormattedTextField date;
+    private com.toedter.calendar.JDateChooser date;
     private javax.swing.JLabel dateLabel;
     private javax.swing.JLabel formTitle;
     private javax.swing.JLabel logout;
