@@ -1,18 +1,11 @@
 package Frames;
 
-import Functions.Frame;
-import Functions.RegisterUser;
 import Functions.BookAppointment;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 
 public class AdminDashboard extends javax.swing.JPanel {
 
-    // Creates new form LoginForm
     public AdminDashboard() {
         initComponents();
     }
@@ -260,12 +253,10 @@ public class AdminDashboard extends javax.swing.JPanel {
         if (selectedDate == null || timeText.isEmpty() || purposeText.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please fill in all fields.", "Book Appointment", JOptionPane.ERROR_MESSAGE);
         } else {
-            // Clear the date field
             date.setDate(null);
             time.setText("");
             purpose.setText("");
 
-            // Call the book method with the selectedDate, timeText, and purposeText
             BookAppointment ba = new BookAppointment();
             ba.book(selectedDate, timeText, purposeText);
         }
