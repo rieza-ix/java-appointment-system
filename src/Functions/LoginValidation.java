@@ -1,17 +1,17 @@
 package Functions;
 
+import Functions.LoginResult;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
-import Functions.LoginResult;
 
 public class LoginValidation {
 
     public LoginResult validateLogin(String username, String password) {
-        boolean isValid = false; // Initialize isValid
-        int userID = 0; // Initialize userID
+        boolean isValid = false;
+        int userID = 0;
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -28,7 +28,7 @@ public class LoginValidation {
                 userID = resultSet.getInt("user_id");
                 isValid = true;
             } else {
-                isValid = false; // Set isValid to false if no matching user is found
+                isValid = false;
             }
 
             statement.close();
@@ -37,7 +37,6 @@ public class LoginValidation {
             System.out.println(e);
             JOptionPane.showMessageDialog(null, "Error retrieving data from database.", "Login Form", JOptionPane.ERROR_MESSAGE);
         }
-
         return new LoginResult(isValid, userID);
     }
 

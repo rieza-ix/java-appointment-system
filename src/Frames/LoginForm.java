@@ -1,7 +1,6 @@
 package Frames;
 
 import Functions.Frame;
-import Functions.BookAppointment;
 import Functions.LoginValidation;
 import Functions.LoginResult;
 import javax.swing.JFrame;
@@ -32,7 +31,6 @@ public class LoginForm extends javax.swing.JPanel {
         loginButton = new javax.swing.JButton();
         signUpButton = new javax.swing.JButton();
         showPassword = new javax.swing.JCheckBox();
-        forgotPassword = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
@@ -173,24 +171,6 @@ public class LoginForm extends javax.swing.JPanel {
         });
         loginForm.add(showPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 110, -1));
 
-        forgotPassword.setBackground(new java.awt.Color(255, 255, 255));
-        forgotPassword.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        forgotPassword.setForeground(new java.awt.Color(0, 51, 153));
-        forgotPassword.setText("Forgot password?");
-        forgotPassword.setBorder(null);
-        forgotPassword.setBorderPainted(false);
-        forgotPassword.setContentAreaFilled(false);
-        forgotPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        forgotPassword.setFocusPainted(false);
-        forgotPassword.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        forgotPassword.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        forgotPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                forgotPasswordActionPerformed(evt);
-            }
-        });
-        loginForm.add(forgotPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 130, 20));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -235,10 +215,6 @@ public class LoginForm extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_showPasswordActionPerformed
 
-    private void forgotPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forgotPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_forgotPasswordActionPerformed
-
     private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
         Frame frame = new Frame();
         frame.viewFrame("Frames.RegistrationForm", "Registration Form");
@@ -247,7 +223,6 @@ public class LoginForm extends javax.swing.JPanel {
     }//GEN-LAST:event_signUpButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton forgotPassword;
     private javax.swing.JLabel greetingMessage;
     private javax.swing.JLabel image;
     private javax.swing.JLabel jLabel2;

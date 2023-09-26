@@ -1,12 +1,12 @@
 package Functions;
 
 import Frames.AdminDashboard;
+import java.util.Date;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.JOptionPane;
+import java.text.SimpleDateFormat;
 
 public class BookAppointment extends AdminDashboard {
 

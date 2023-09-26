@@ -5,7 +5,6 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-// @author riezxcvii
 public class Frame {
 
     public void viewFrame(String className, String title) {
