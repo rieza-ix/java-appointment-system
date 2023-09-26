@@ -1,9 +1,12 @@
 package Frames;
 
 import Functions.BookAppointment;
+import Functions.Frame;
 import Functions.LoginResult;
 import java.util.Date;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 public class AdminDashboard extends javax.swing.JPanel {
 
@@ -54,16 +57,26 @@ public class AdminDashboard extends javax.swing.JPanel {
         moduleTitle.setText("Dashboard");
         moduleTitle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        logout.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        logout.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         logout.setForeground(new java.awt.Color(255, 255, 255));
         logout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         logout.setText("Log out");
+        logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutMouseClicked(evt);
+            }
+        });
 
-        clients.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        clients.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         clients.setForeground(new java.awt.Color(255, 255, 255));
         clients.setText("Clients");
+        clients.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clientsMouseClicked(evt);
+            }
+        });
 
-        profile.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        profile.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         profile.setForeground(new java.awt.Color(255, 255, 255));
         profile.setText("Profile");
         profile.setBorder(null);
@@ -76,7 +89,7 @@ public class AdminDashboard extends javax.swing.JPanel {
             .addGroup(navBarLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(moduleTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 466, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 459, Short.MAX_VALUE)
                 .addComponent(clients)
                 .addGap(18, 18, 18)
                 .addComponent(profile)
@@ -111,7 +124,7 @@ public class AdminDashboard extends javax.swing.JPanel {
         purposeLabel.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         purposeLabel.setText("Purpose");
 
-        purpose.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        purpose.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         purpose.setActionCommand("<Not Set>");
         purpose.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
 
@@ -129,17 +142,17 @@ public class AdminDashboard extends javax.swing.JPanel {
         date.setBackground(new java.awt.Color(255, 255, 255));
         date.setBorder(null);
         date.setDateFormatString("yyyy-MM-dd");
-        date.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        date.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         time.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         time.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
         time.setFocusLostBehavior(javax.swing.JFormattedTextField.COMMIT);
-        time.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        time.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         purposeLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         purposeLabel1.setText("Full Name");
 
-        client.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        client.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         client.setActionCommand("<Not Set>");
         client.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
 
@@ -149,7 +162,7 @@ public class AdminDashboard extends javax.swing.JPanel {
             bookFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(formTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(bookFormLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addGap(44, 44, 44)
                 .addGroup(bookFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bookFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(client, javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,7 +174,7 @@ public class AdminDashboard extends javax.swing.JPanel {
                         .addComponent(date, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(time, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(purposeLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         bookFormLayout.setVerticalGroup(
             bookFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -270,6 +283,7 @@ public class AdminDashboard extends javax.swing.JPanel {
         if (clientText.isEmpty() || selectedDate == null || timeText.isEmpty() || purposeText.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please fill in all fields.", "Book Appointment", JOptionPane.ERROR_MESSAGE);
         } else {
+            client.setText("");
             date.setDate(null);
             time.setText("");
             purpose.setText("");
@@ -278,6 +292,20 @@ public class AdminDashboard extends javax.swing.JPanel {
             ba.book(clientText, selectedDate, timeText, purposeText);
         }
     }//GEN-LAST:event_bookAppointmentButtonActionPerformed
+
+    private void clientsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clientsMouseClicked
+        Frame frame = new Frame();
+        frame.viewFrame("Frames.ClientAccounts", "Appointment System - Client Accounts");
+        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        currentFrame.dispose();
+    }//GEN-LAST:event_clientsMouseClicked
+
+    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
+        Frame frame = new Frame();
+        frame.viewFrame("Frames.LoginForm", "Appointment System");
+        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        currentFrame.dispose();
+    }//GEN-LAST:event_logoutMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel allAppointmentsContainer;

@@ -224,7 +224,6 @@ public class LoginForm extends javax.swing.JPanel {
             currentFrame.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Invalid credentials. Check your username and password.", "Login Form", JOptionPane.ERROR_MESSAGE);
-            password.setText("");
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 
