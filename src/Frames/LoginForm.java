@@ -1,7 +1,9 @@
 package Frames;
 
 import Functions.Frame;
+import Functions.BookAppointment;
 import Functions.LoginValidation;
+import Functions.LoginResult;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -210,10 +212,12 @@ public class LoginForm extends javax.swing.JPanel {
         String usernameText = username.getText();
         String passwordText = password.getText();
 
-        LoginValidation validate = new LoginValidation();
-        boolean isValid = validate.validateLogin(usernameText, passwordText);
+        LoginValidation loginValidation = new LoginValidation();
+        LoginResult result = loginValidation.validateLogin(usernameText, passwordText);
 
-        if (isValid) {
+        boolean isValidUser = result.isValid();
+
+        if (isValidUser) {
             Frame frame = new Frame();
             frame.viewFrame("Frames.AdminDashboard", "Appointment System - Admin Dashboard");
             JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);

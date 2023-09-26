@@ -6,16 +6,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
-public class GetUserName {
+public class GetClientName {
 
-    static String getUsernameFromUserID(int userID) {
-        String firstName = null; // Initialize with a default value (null) in case user is not found
+    public String getClientName(int userID) {
+        String firstName = null;
         String lastName = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/appointment_system", "root", "");
 
-            String sql = "SELECT first_name, last_name FROM user_account WHERE user_ID = ?";
+            String sql = "SELECT first_name, last_name FROM user_account WHERE user_id = ?";
             PreparedStatement preparedStatement = con.prepareStatement(sql);
             preparedStatement.setInt(1, userID);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -24,6 +24,8 @@ public class GetUserName {
             if (resultSet.next()) {
                 firstName = resultSet.getString(1);
                 lastName = resultSet.getString(2);
+            } else {
+                JOptionPane.showMessageDialog(null, "User with user ID " + userID + " not found in the database.", "User Not Found", JOptionPane.ERROR_MESSAGE);
             }
 
             resultSet.close();
