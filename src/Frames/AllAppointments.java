@@ -23,10 +23,10 @@ public class AllAppointments extends javax.swing.JPanel {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/appointment_system", "root", "");
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT client, date, time, purpose FROM appointment ORDER BY date, time ASC");
+            ResultSet rs = stmt.executeQuery("SELECT client, date, time, purpose, status FROM appointment ORDER BY date, time ASC");
 
             while (rs.next()) {
-                model.addRow(new Object[]{rs.getString("client"), rs.getString("date"), rs.getString("time"), rs.getString("purpose")});
+                model.addRow(new Object[]{rs.getString("client"), rs.getString("date"), rs.getString("time"), rs.getString("purpose"), rs.getString("status")});
             }
 
             con.close();
@@ -60,11 +60,11 @@ public class AllAppointments extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Client", "Date", "Time", "Purpose"
+                "Client", "Date", "Time", "Purpose", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -78,6 +78,9 @@ public class AllAppointments extends javax.swing.JPanel {
         jTable1.setShowHorizontalLines(true);
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(3).setPreferredWidth(300);
+        }
 
         jPanel1.setBackground(new java.awt.Color(202, 70, 2));
 
@@ -91,6 +94,11 @@ public class AllAppointments extends javax.swing.JPanel {
         profile.setText("Profile");
         profile.setBorder(null);
         profile.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        profile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                profileMouseClicked(evt);
+            }
+        });
 
         home.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         home.setForeground(new java.awt.Color(255, 255, 255));
@@ -171,6 +179,13 @@ public class AllAppointments extends javax.swing.JPanel {
         JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
         currentFrame.dispose();
     }//GEN-LAST:event_logoutMouseClicked
+
+    private void profileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileMouseClicked
+        Frame frame = new Frame();
+        frame.viewFrame("Frames.UserProfile", "Appointment System - User Profile");
+        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        currentFrame.dispose();
+    }//GEN-LAST:event_profileMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel home;

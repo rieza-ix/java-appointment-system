@@ -33,7 +33,7 @@ public class AdminDashboard extends javax.swing.JPanel {
             String formattedDate = dateFormat.format(currentDate);
 
             // Modify the SQL query to filter by the current date
-            String sql = "SELECT client, time, purpose FROM appointment WHERE date = '" + formattedDate + "' ORDER BY time ASC";
+            String sql = "SELECT client, time, purpose FROM appointment WHERE date = '" + formattedDate + "' AND status = 1 ORDER BY time ASC";
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
@@ -258,7 +258,8 @@ public class AdminDashboard extends javax.swing.JPanel {
         jTable1.setRowHeight(20);
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(200);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(100);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(150);
         }
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -384,7 +385,7 @@ public class AdminDashboard extends javax.swing.JPanel {
 
     private void profileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileMouseClicked
         Frame frame = new Frame();
-        frame.viewFrame("Frames.UpdateDataForm", "Appointment System - User Profile");
+        frame.viewFrame("Frames.UserProfile", "Appointment System - User Profile");
         JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
         currentFrame.dispose();
     }//GEN-LAST:event_profileMouseClicked
