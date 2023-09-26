@@ -10,7 +10,9 @@ import java.text.SimpleDateFormat;
 
 public class BookAppointment extends AdminDashboard {
 
-    public void book(String client, Date selectedDate, String timeText, String purposeText) {
+    public void book(int userID, Date selectedDate, String timeText, String purposeText) {
+        GetClientName client = new GetClientName();
+        String clientName = client.getClientName(userID);
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -27,7 +29,7 @@ public class BookAppointment extends AdminDashboard {
                 // Convert the parsed time to a java.sql.Time object
                 java.sql.Time sqlTime = new java.sql.Time(parsedTime.getTime());
 
-                statement.setString(1, client);
+                statement.setString(1, clientName);
                 statement.setDate(2, new java.sql.Date(selectedDate.getTime()));
                 statement.setTime(3, sqlTime);
                 statement.setString(4, purposeText);

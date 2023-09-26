@@ -2,6 +2,7 @@ package Frames;
 
 import Functions.Frame;
 import Functions.LoginValidation;
+import Functions.UserID;
 import Functions.LoginResult;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -196,6 +197,10 @@ public class LoginForm extends javax.swing.JPanel {
         LoginResult result = loginValidation.validateLogin(usernameText, passwordText);
 
         boolean isValidUser = result.isValid();
+        int userID = result.getUserID();
+
+        UserID userManager = UserID.getInstance();
+        userManager.setUserID(userID);
 
         if (isValidUser) {
             Frame frame = new Frame();
