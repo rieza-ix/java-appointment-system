@@ -243,7 +243,7 @@ public class AdminDashboard extends javax.swing.JPanel {
             bookFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bookFormLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(formTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(formTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(clientLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
