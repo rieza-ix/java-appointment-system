@@ -2,7 +2,7 @@ package Client;
 
 import Server.Frame;
 import Server.BookAppointment;
-import Server.UserID;
+import Server.UserSession;
 import java.util.Date;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -86,6 +86,8 @@ public class AdminDashboard extends javax.swing.JPanel {
         bookAppointmentButton = new javax.swing.JButton();
         date = new com.toedter.calendar.JDateChooser();
         time = new javax.swing.JFormattedTextField();
+        clientName = new javax.swing.JTextField();
+        clientLabel = new javax.swing.JLabel();
         upcomingContainer = new javax.swing.JPanel();
         upcomingContainerTitle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -211,48 +213,61 @@ public class AdminDashboard extends javax.swing.JPanel {
         time.setFocusLostBehavior(javax.swing.JFormattedTextField.COMMIT);
         time.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        clientName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        clientName.setActionCommand("<Not Set>");
+        clientName.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
+
+        clientLabel.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        clientLabel.setText("Client Name");
+
         javax.swing.GroupLayout bookFormLayout = new javax.swing.GroupLayout(bookForm);
         bookForm.setLayout(bookFormLayout);
         bookFormLayout.setHorizontalGroup(
             bookFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(formTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
-            .addGroup(bookFormLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addGroup(bookFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(dateLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(timeLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(purposeLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(purpose, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bookAppointmentButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(date, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(time, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookFormLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(bookFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(dateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(timeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(purposeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(purpose)
+                    .addComponent(bookAppointmentButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(time)
+                    .addComponent(clientName)
+                    .addComponent(clientLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45))
         );
         bookFormLayout.setVerticalGroup(
             bookFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bookFormLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(formTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(formTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(clientLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(clientName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(timeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(purposeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(purpose, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addComponent(purpose, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(bookAppointmentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addGap(38, 38, 38))
         );
 
         add(bookForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, 320, 420));
 
-        upcomingContainer.setBackground(java.awt.SystemColor.controlHighlight);
+        upcomingContainer.setBackground(java.awt.SystemColor.control);
         upcomingContainer.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
 
         upcomingContainerTitle.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
@@ -382,22 +397,28 @@ public class AdminDashboard extends javax.swing.JPanel {
 
     private void bookAppointmentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookAppointmentButtonActionPerformed
         // get the data entered
+        String clientNameText = clientName.getText();
         Date selectedDate = date.getDate();
         String timeText = time.getText();
         String purposeText = purpose.getText();
 
         // checks if all fields are not empty
-        if (selectedDate == null || timeText.isEmpty() || purposeText.isEmpty()) {
+        if (clientNameText.isEmpty() || selectedDate == null || timeText.isEmpty() || purposeText.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please fill in all fields.", "Book Appointment", JOptionPane.INFORMATION_MESSAGE);
         } else {
+            clientName.setText("");
+            date.setDate(null);
+            time.setText("");
+            purpose.setText("");
 
             // retrive the user_id of the user who logged in
-            UserID userManager = UserID.getInstance();
+            UserSession userManager = UserSession.getInstance();
             int userID = userManager.getUserID();
+            String userRole = userManager.getUserRole();
 
             // pass the data to book the appointment
             BookAppointment ba = new BookAppointment();
-            ba.book(userID, selectedDate, timeText, purposeText);
+            ba.book(userID, userRole, clientNameText, selectedDate, timeText, purposeText);
         }
     }//GEN-LAST:event_bookAppointmentButtonActionPerformed
 
@@ -437,6 +458,8 @@ public class AdminDashboard extends javax.swing.JPanel {
     private javax.swing.JLabel cancelledAppointments;
     private javax.swing.JPanel cancelledContainer;
     private javax.swing.JLabel cancelledLabel;
+    private javax.swing.JLabel clientLabel;
+    private javax.swing.JTextField clientName;
     private javax.swing.JLabel clients;
     private com.toedter.calendar.JDateChooser date;
     private javax.swing.JLabel dateLabel;

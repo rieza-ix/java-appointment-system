@@ -2,7 +2,7 @@ package Client;
 
 import Server.Frame;
 import Server.LoginValidation;
-import Server.UserID;
+import Server.UserSession;
 import Server.LoginResult;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -200,15 +200,23 @@ public class LoginForm extends javax.swing.JPanel {
         // retrive the returned value in LoginResult class and store it in the variable
         boolean isValidUser = result.isValid();
         int userID = result.getUserID();
+        String userRole = result.getUserRole();
 
         // store the userID retrieved from LoginResult to access it anywhere
-        UserID userManager = UserID.getInstance();
+        UserSession userManager = UserSession.getInstance();
         userManager.setUserID(userID);
+        userManager.setUserRole(userRole);
 
         // grant access if the credential enetered matches the data in the database
         if (isValidUser) {
             Frame frame = new Frame();
-            frame.viewFrame("Client.AdminDashboard", "Appointment System - Admin Dashboard");
+            // redirects user to its own page designation based on their role
+            if ("Admin".equals(userRole)) {
+                frame.viewFrame("Client.AdminDashboard", "Appointment System - Admin Dashboard");
+            } else {
+                frame.viewFrame("Client.ClientDashboard", "Appointment System - Client Dashboard");
+            }
+
             JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
             currentFrame.dispose();
         } else {

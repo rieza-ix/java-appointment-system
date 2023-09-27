@@ -5,14 +5,16 @@ public class LoginResult {
 
     private boolean isValid;
     private int userID;
+    private String userRole;
 
     public LoginResult(int userID) {
         this.userID = userID;
     }
 
-    public LoginResult(boolean isValid, int userID) {
+    public LoginResult(boolean isValid, int userID, String userRole) {
         this.isValid = isValid;
         this.userID = userID;
+        this.userRole = userRole;
     }
 
     public boolean isValid() {
@@ -23,4 +25,7 @@ public class LoginResult {
         return userID;
     }
 
+    public String getUserRole() {
+        return userRole;
+    }
 }

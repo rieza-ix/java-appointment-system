@@ -11,41 +11,26 @@ import java.text.SimpleDateFormat;
 
 public class BookAppointment extends AdminDashboard {
 
-    public void book(int userID, Date selectedDate, String timeText, String purposeText) {
-        // return the user full name by passing the user_id received
+    public void book(int userID, String userRole, String clientName2, Date selectedDate, String timeText, String purposeText) {
+        // Return the user full name by passing the user_id received
         GetClientName client = new GetClientName();
         String clientName = client.getClientName(userID);
 
         try {
-            // establish connection to MySQL database
+            // Establish connection to MySQL database
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/appointment_system", "root", "");
 
             if (client != null) {
-                // sql query to retrieve user with the provided user_id
-                String roleQuery = "SELECT role FROM user_account WHERE user_ID = ?";
-                PreparedStatement roleStatement = con.prepareStatement(roleQuery);
-                roleStatement.setInt(1, userID);
-
-                ResultSet roleResultSet = roleStatement.executeQuery();
-                String userRole = "";
-
-                // get the user role
-                if (roleResultSet.next()) {
-                    userRole = roleResultSet.getString("role");
-                }
-
-                roleStatement.close();
-
-                // check if an appointment with the same date and time already exists and has a status of Approved
+                // Check if an appointment with the same date and time already exists and has a status of Approved
                 String checkSql = "SELECT * FROM appointment WHERE date = ? AND time = ? AND status = 'Approved'";
                 PreparedStatement checkStatement = con.prepareStatement(checkSql);
 
-                // create pattern for date
+                // Create pattern for date
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 java.sql.Date sqlDate = new java.sql.Date(selectedDate.getTime());
 
-                // create pattern for time
+                // Create pattern for time
                 SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a");
                 java.util.Date parsedTime = timeFormat.parse(timeText);
                 java.sql.Time sqlTime = new java.sql.Time(parsedTime.getTime());
@@ -58,24 +43,25 @@ public class BookAppointment extends AdminDashboard {
                 if (resultSet.next()) {
                     JOptionPane.showMessageDialog(null, "An appointment at the same date and time already exists.", "Book Appointment", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    // determine the status based on user role
+                    // Determine the status based on user role
                     String status = (userRole.equals("Admin")) ? "Approved" : "Pending";
+                    String name = (userRole.equals("Admin")) ? clientName2 : clientName;
 
-                    // insert the new appointment with the determined status
-                    String sql = "INSERT INTO appointment(client, date, time, purpose, status) VALUES (?, ?, ?, ?, ?)";
+                    // Insert the new appointment with the determined status
+                    String sql = "INSERT INTO appointment(user_id, client, date, time, purpose, status) VALUES (?, ?, ?, ?, ?, ?)";
                     PreparedStatement statement = con.prepareStatement(sql);
-
-                    statement.setString(1, clientName);
-                    statement.setDate(2, sqlDate);
-                    statement.setTime(3, sqlTime);
-                    statement.setString(4, purposeText);
-                    statement.setString(5, status);
+                    statement.setInt(1, userID);
+                    statement.setString(2, name);
+                    statement.setDate(3, sqlDate);
+                    statement.setTime(4, sqlTime);
+                    statement.setString(5, purposeText);
+                    statement.setString(6, status);
 
                     int rowsInserted = statement.executeUpdate();
 
-                    // display message
+                    // Display message
                     if (rowsInserted > 0) {
-                        if (status == "Approved") {
+                        if ("Approved".equals(status)) {
                             JOptionPane.showMessageDialog(null, "Appointment booked successfully.", "Book Appointment", JOptionPane.INFORMATION_MESSAGE);
                         } else {
                             JOptionPane.showMessageDialog(null, "Your appointment is pending for approval. Please wait until the admin approves your appointment.", "Book Appointment", JOptionPane.INFORMATION_MESSAGE);
@@ -94,7 +80,7 @@ public class BookAppointment extends AdminDashboard {
             con.close();
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Make sure you enter the correct format for time. For example, H:MM A (8:00 AM) .", "Book Appointment", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Make sure you enter the correct format for time. For example, H:MM A (8:00 AM).", "Book Appointment", JOptionPane.ERROR_MESSAGE);
         }
     }
 

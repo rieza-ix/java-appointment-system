@@ -9,7 +9,7 @@ public class UpdateAccount {
 
     public void update(String lastName, String firstName, String phoneNumber, String emailAddress, String username, String password) {
         // retrive the user_id of the user who logged in
-        UserID userManager = UserID.getInstance();
+        UserSession userManager = UserSession.getInstance();
         int userID = userManager.getUserID();
 
         try {

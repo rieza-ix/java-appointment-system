@@ -1,7 +1,7 @@
 package Client;
 
 import Server.Frame;
-import Server.UserID;
+import Server.UserSession;
 import Server.UpdateAccount;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,7 +17,7 @@ public class UserProfile extends javax.swing.JPanel {
         initComponents();
 
         // retrive the user_id of the user who logged in
-        UserID userManager = UserID.getInstance();
+        UserSession userManager = UserSession.getInstance();
         int userID = userManager.getUserID();
 
         try {
@@ -275,8 +275,16 @@ public class UserProfile extends javax.swing.JPanel {
     }//GEN-LAST:event_registerButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        UserSession userManager = UserSession.getInstance();
+        String userRole = userManager.getUserRole();
         Frame frame = new Frame();
-        frame.viewFrame("Client.AdminDashboard", "Appointment System - Admin Dashboard");
+
+        if ("Admin".equals(userRole)) {
+            frame.viewFrame("Client.AdminDashboard", "Appointment System - Admin Dashboard");
+        } else {
+            frame.viewFrame("Client.ClientDashboard", "Appointment System - Client Dashboard");
+        }
+
         JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
         currentFrame.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
