@@ -1,5 +1,5 @@
 
-import Functions.Frame;
+import Server.Frame;
 import Database.ConnectDatabase;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -16,7 +16,7 @@ public class App {
 
                 if (db.isConnected == true) {
                     Frame frame = new Frame();
-                    frame.viewFrame("Frames.LoginForm", "Appointment System");
+                    frame.viewFrame("Client.LoginForm", "Appointment System");
                 } else {
                     JOptionPane.showMessageDialog(null, "Error connecting to database.", "Connection failed.", JOptionPane.ERROR_MESSAGE);
                 }
