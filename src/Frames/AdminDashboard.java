@@ -32,15 +32,30 @@ public class AdminDashboard extends javax.swing.JPanel {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String formattedDate = dateFormat.format(currentDate);
 
-            // Modify the SQL query to filter by the current date
-            String sql = "SELECT client, time, purpose FROM appointment WHERE date = '" + formattedDate + "' AND status = 1 ORDER BY time ASC";
+            String sql = "SELECT client, time, purpose FROM appointment WHERE date = '" + formattedDate + "' AND status = 'Approved' ORDER BY time ASC";
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
                 model.addRow(new Object[]{rs.getString("client"), rs.getString("time"), rs.getString("purpose")});
             }
 
+            String sql2 = "SELECT status FROM appointment WHERE status IN ('Approved', 'Cancelled') ORDER BY date, time ASC";
+            ResultSet rs2 = stmt.executeQuery(sql2);
+            int appointmentCount = 0, cancelledCount = 0;
+
+            while (rs2.next()) {
+                String status = rs2.getString("status");
+
+                if ("Approved".equals(status)) {
+                    appointmentCount++;
+                } else if ("Cancelled".equals(status)) {
+                    cancelledCount++;
+                }
+            }
+
             con.close();
+            totalAppointments.setText(Integer.toString(appointmentCount));
+            cancelledAppointments.setText(Integer.toString(cancelledCount));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -71,8 +86,10 @@ public class AdminDashboard extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         allAppointmentsContainer = new javax.swing.JPanel();
         allAppointmentsTitle = new javax.swing.JLabel();
+        totalAppointments = new javax.swing.JLabel();
         cancelledContainer = new javax.swing.JPanel();
         cancelledLabel = new javax.swing.JLabel();
+        cancelledAppointments = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
@@ -236,6 +253,7 @@ public class AdminDashboard extends javax.swing.JPanel {
         upcomingContainerTitle.setText("Upcoming Appointments");
         upcomingContainerTitle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        jTable1.setBackground(java.awt.SystemColor.control);
         jTable1.setBorder(null);
         jTable1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -297,23 +315,29 @@ public class AdminDashboard extends javax.swing.JPanel {
 
         allAppointmentsContainer.setBackground(new java.awt.Color(255, 255, 255));
         allAppointmentsContainer.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
+        allAppointmentsContainer.setFont(new java.awt.Font("Segoe UI", 1, 50)); // NOI18N
 
         allAppointmentsTitle.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
         allAppointmentsTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         allAppointmentsTitle.setText("All Appointments");
+        allAppointmentsTitle.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
+        totalAppointments.setFont(new java.awt.Font("Segoe UI", 1, 50)); // NOI18N
+        totalAppointments.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout allAppointmentsContainerLayout = new javax.swing.GroupLayout(allAppointmentsContainer);
         allAppointmentsContainer.setLayout(allAppointmentsContainerLayout);
         allAppointmentsContainerLayout.setHorizontalGroup(
             allAppointmentsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(allAppointmentsTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+            .addComponent(totalAppointments, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         allAppointmentsContainerLayout.setVerticalGroup(
             allAppointmentsContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(allAppointmentsContainerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(allAppointmentsTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addComponent(allAppointmentsTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(totalAppointments, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
         );
 
         add(allAppointmentsContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 195, 143));
@@ -324,19 +348,24 @@ public class AdminDashboard extends javax.swing.JPanel {
         cancelledLabel.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
         cancelledLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cancelledLabel.setText("Cancelled");
+        cancelledLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
+        cancelledAppointments.setFont(new java.awt.Font("Segoe UI", 1, 50)); // NOI18N
+        cancelledAppointments.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout cancelledContainerLayout = new javax.swing.GroupLayout(cancelledContainer);
         cancelledContainer.setLayout(cancelledContainerLayout);
         cancelledContainerLayout.setHorizontalGroup(
             cancelledContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cancelledLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(cancelledLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+            .addComponent(cancelledAppointments, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         cancelledContainerLayout.setVerticalGroup(
             cancelledContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cancelledContainerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cancelledLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addComponent(cancelledLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(cancelledAppointments, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
         );
 
         add(cancelledContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 70, 195, 143));
@@ -395,6 +424,7 @@ public class AdminDashboard extends javax.swing.JPanel {
     private javax.swing.JLabel allAppointmentsTitle;
     private javax.swing.JButton bookAppointmentButton;
     private javax.swing.JPanel bookForm;
+    private javax.swing.JLabel cancelledAppointments;
     private javax.swing.JPanel cancelledContainer;
     private javax.swing.JLabel cancelledLabel;
     private javax.swing.JLabel clients;
@@ -412,6 +442,7 @@ public class AdminDashboard extends javax.swing.JPanel {
     private javax.swing.JLabel purposeLabel;
     private javax.swing.JFormattedTextField time;
     private javax.swing.JLabel timeLabel;
+    private javax.swing.JLabel totalAppointments;
     private javax.swing.JPanel upcomingContainer;
     private javax.swing.JLabel upcomingContainerTitle;
     // End of variables declaration//GEN-END:variables
