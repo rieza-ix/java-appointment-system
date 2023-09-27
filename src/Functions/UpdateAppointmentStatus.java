@@ -8,10 +8,11 @@ public class UpdateAppointmentStatus {
 
     public void updateAppointment(int appointmentId, String newStatus) {
         try {
+            // establish connection to MySQL database
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/appointment_system", "root", "");
 
-            // Update the status in the database
+            // sql query to update the status in the database
             String sql = "UPDATE appointment SET status = ? WHERE appointment_id = ?";
             PreparedStatement statement = con.prepareStatement(sql);
             statement.setString(1, newStatus);

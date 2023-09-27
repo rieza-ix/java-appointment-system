@@ -8,13 +8,16 @@ import javax.swing.JOptionPane;
 public class UpdateAccount {
 
     public void update(String lastName, String firstName, String phoneNumber, String emailAddress, String username, String password) {
+        // retrive the user_id of the user who logged in
         UserID userManager = UserID.getInstance();
         int userID = userManager.getUserID();
 
         try {
+            // establish connection to MySQL database
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/" + "appointment_system", "root", "");
 
+            // sql query tp update user account
             String sql = "UPDATE user_account "
                     + "SET last_name = ?, first_name = ?, phone_number = ?, email_address = ?, username = ?, password = ?"
                     + "WHERE user_id = ?";
@@ -31,12 +34,12 @@ public class UpdateAccount {
 
             int rowsUpdated = statement.executeUpdate();
 
+            // display messgae
             if (rowsUpdated > 0) {
                 JOptionPane.showMessageDialog(null, "Account updated successfully.", "User Profile", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(null, "Error updating your account.", "User Profile", JOptionPane.ERROR_MESSAGE);
             }
-
             statement.close();
             con.close();
         } catch (Exception e) {

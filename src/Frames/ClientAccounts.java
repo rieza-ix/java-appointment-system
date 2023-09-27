@@ -16,19 +16,23 @@ public class ClientAccounts extends javax.swing.JPanel {
         displayClientData();
     }
 
+    // table
     private void displayClientData() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
         try {
+            // establish connection to MySQL database
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/appointment_system", "root", "");
+
+            // sql query to retrieve, username, first name, last name, phone number, and email address
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT username, last_name, first_name, phone_number, email_address FROM user_account ORDER BY last_name ASC");
 
+            // display the data in the row
             while (rs.next()) {
                 model.addRow(new Object[]{rs.getString("username"), rs.getString("last_name"), rs.getString("first_name"), rs.getString("phone_number"), rs.getString("email_address")});
             }
-
             con.close();
         } catch (Exception e) {
             e.printStackTrace();

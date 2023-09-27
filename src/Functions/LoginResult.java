@@ -1,5 +1,6 @@
 package Functions;
 
+// encapsulate the result of a validateLogin
 public class LoginResult {
 
     private boolean isValid;

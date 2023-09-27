@@ -17,8 +17,8 @@ public class ConnectDatabase {
     public Connection checkConnection() {
 
         try {
-            isConnected = true;
             con = DriverManager.getConnection(url, username, password);
+            isConnected = true;
 
         } catch (SQLException e) {
             isConnected = false;

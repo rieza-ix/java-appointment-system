@@ -190,18 +190,22 @@ public class LoginForm extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        // get the data entered
         String usernameText = username.getText();
         String passwordText = password.getText();
 
         LoginValidation loginValidation = new LoginValidation();
+        // pass the value in the validateLogin method in LoginValidation class through instantiation of LoginResult class
         LoginResult result = loginValidation.validateLogin(usernameText, passwordText);
-
+        // retrive the returned value in LoginResult class and store it in the variable
         boolean isValidUser = result.isValid();
         int userID = result.getUserID();
 
+        // store the userID retrieved from LoginResult to access it anywhere
         UserID userManager = UserID.getInstance();
         userManager.setUserID(userID);
 
+        // grant access if the credential enetered matches the data in the database
         if (isValidUser) {
             Frame frame = new Frame();
             frame.viewFrame("Frames.AdminDashboard", "Appointment System - Admin Dashboard");

@@ -232,10 +232,10 @@ public class RegistrationForm extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        currentFrame.dispose();
         Frame frame = new Frame();
         frame.viewFrame("Frames.LoginForm", "Appointment System");
+        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        currentFrame.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void showPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPasswordActionPerformed
@@ -247,6 +247,7 @@ public class RegistrationForm extends javax.swing.JPanel {
     }//GEN-LAST:event_showPasswordActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+        // get the data entered
         String lastNameText = lastName.getText();
         String firstNameText = firstName.getText();
         String phoneNumberText = phoneNumber.getText();
@@ -254,11 +255,15 @@ public class RegistrationForm extends javax.swing.JPanel {
         String usernameText = username.getText();
         String passwordText = password.getText().toString();
 
+        // checks if all fields are not empty
         if (lastNameText.isEmpty() || firstNameText.isEmpty() || phoneNumberText.isEmpty() || emailAddressText.isEmpty() || usernameText.isEmpty() || passwordText.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please fill in all fields.", "Registration Form", JOptionPane.ERROR_MESSAGE);
         } else {
+            // pass the value to register the user
             RegisterUser registerUser = new RegisterUser();
             registerUser.register(lastNameText, firstNameText, phoneNumberText, emailAddressText, usernameText, passwordText);
+            
+            // close the registration form to direct the user in login page after a successful registration
             JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
             currentFrame.dispose();
         }

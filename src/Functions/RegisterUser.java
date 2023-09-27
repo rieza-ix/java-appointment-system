@@ -9,9 +9,11 @@ public class RegisterUser {
 
     public void register(String lastName, String firstName, String phoneNumber, String emailAddress, String username, String password) {
         try {
+            // establish connection to MySQL database
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/" + "appointment_system", "root", "");
 
+            // sql query add the data entered to the database
             String sql = "INSERT INTO user_account(last_name, first_name, phone_number, email_address, username, password, role, status)" + "VALUES(?,?,?,?,?,?,?,?)";
             PreparedStatement statement = con.prepareStatement(sql);
             statement.setString(1, lastName);

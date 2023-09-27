@@ -25,6 +25,7 @@ public class AdminDashboard extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
         try {
+            // establish connection to MySQL database
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/appointment_system", "root", "");
             Statement stmt = con.createStatement();
@@ -32,17 +33,21 @@ public class AdminDashboard extends javax.swing.JPanel {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String formattedDate = dateFormat.format(currentDate);
 
+            // sql query to retrieve client, time, and purpose from the database
             String sql = "SELECT client, time, purpose FROM appointment WHERE date = '" + formattedDate + "' AND status = 'Approved' ORDER BY time ASC";
             ResultSet rs = stmt.executeQuery(sql);
 
+            // display data in rows
             while (rs.next()) {
                 model.addRow(new Object[]{rs.getString("client"), rs.getString("time"), rs.getString("purpose")});
             }
 
-            String sql2 = "SELECT status FROM appointment WHERE status IN ('Approved', 'Cancelled') ORDER BY date, time ASC";
+            // sql query for counting all upcoming appointments as well as cancelled appointment for the current day
+            String sql2 = "SELECT status FROM appointment WHERE status IN ('Approved', 'Cancelled') AND date = '" + formattedDate + "' ORDER BY date, time ASC";
             ResultSet rs2 = stmt.executeQuery(sql2);
             int appointmentCount = 0, cancelledCount = 0;
 
+            // count the total
             while (rs2.next()) {
                 String status = rs2.getString("status");
 
@@ -52,12 +57,14 @@ public class AdminDashboard extends javax.swing.JPanel {
                     cancelledCount++;
                 }
             }
-
             con.close();
+
+            // display the total in jlabel
             totalAppointments.setText(Integer.toString(appointmentCount));
             cancelledAppointments.setText(Integer.toString(cancelledCount));
         } catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "There was an error retrieving data from database.", "Book AppointmentAdmin Dashboard", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -319,7 +326,7 @@ public class AdminDashboard extends javax.swing.JPanel {
 
         allAppointmentsTitle.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
         allAppointmentsTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        allAppointmentsTitle.setText("All Appointments");
+        allAppointmentsTitle.setText("Appointments");
         allAppointmentsTitle.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
         totalAppointments.setFont(new java.awt.Font("Segoe UI", 1, 50)); // NOI18N
@@ -372,20 +379,24 @@ public class AdminDashboard extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bookAppointmentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookAppointmentButtonActionPerformed
+        // get the data entered
         Date selectedDate = date.getDate();
         String timeText = time.getText();
         String purposeText = purpose.getText();
 
+        // checks if all fields are not empty
         if (selectedDate == null || timeText.isEmpty() || purposeText.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please fill in all fields.", "Book Appointment", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please fill in all fields.", "Book Appointment", JOptionPane.INFORMATION_MESSAGE);
         } else {
             date.setDate(null);
             time.setText("");
             purpose.setText("");
 
+            // retrive the user_id of the user who logged in
             UserID userManager = UserID.getInstance();
             int userID = userManager.getUserID();
 
+            // pass the data to book the appointment
             BookAppointment ba = new BookAppointment();
             ba.book(userID, selectedDate, timeText, purposeText);
         }

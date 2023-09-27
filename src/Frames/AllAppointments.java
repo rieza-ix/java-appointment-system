@@ -5,7 +5,6 @@ import Functions.UpdateAppointmentStatus;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.Statement;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -19,19 +18,22 @@ public class AllAppointments extends javax.swing.JPanel {
         displayAllAppointments();
     }
 
+    // table
     private void displayAllAppointments() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
         try {
+            // establish connection to MySQL database
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/appointment_system", "root", "");
+            // sql query to retrieve appointment id, client name, date, time, purpose, and status from the database
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT appointment_id, client, date, time, purpose, status FROM appointment ");
 
+            // display the data in the row
             while (rs.next()) {
                 model.addRow(new Object[]{rs.getString("client"), rs.getString("date"), rs.getString("time"), rs.getString("purpose"), rs.getString("status"), rs.getString("appointment_id"), rs.getString("appointment_id")});
             }
-
             con.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -199,34 +201,34 @@ public class AllAppointments extends javax.swing.JPanel {
     }//GEN-LAST:event_profileMouseClicked
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // get the clicked column
         int selectedRow = jTable1.getSelectedRow();
-        int clickedColumn = jTable1.columnAtPoint(evt.getPoint()); // Get the clicked column
+        int clickedColumn = jTable1.columnAtPoint(evt.getPoint());
 
         if (selectedRow != -1) {
             try {
-                // Get the appointment_id from the selected row and parse it to an integer
-                String appointmentIdStr = (String) jTable1.getValueAt(selectedRow, 5); // Assuming appointment_id is in the sixth column
+                // get the row number from the selected row and store it as an appointment_id
+                String appointmentIdStr = (String) jTable1.getValueAt(selectedRow, 5);
                 int appointmentId = Integer.parseInt(appointmentIdStr);
 
-                // Check if the clicked column is the 5th column (APPROVE column)
+                // check if the clicked column is the 5th or 6th column
                 if (clickedColumn == 5) {
-                    // Update the status to "Approved" in the database
+                    // pass the value to update the status to "Approved" in the database
                     UpdateAppointmentStatus update = new UpdateAppointmentStatus();
                     update.updateAppointment(appointmentId, "Approved");
 
-                    // Update the JTable to reflect the change
+                    // update the JTable to reflect the changes
                     jTable1.setValueAt("Approved", selectedRow, 4);
                 } else if (clickedColumn == 6) {
-                    // Update the status to "Cancelled" in the database
+                    // pass the value to update the status to "Cancelled" in the database
                     UpdateAppointmentStatus update = new UpdateAppointmentStatus();
                     update.updateAppointment(appointmentId, "Cancelled");
 
-                    // Update the JTable to reflect the change
+                    // update the JTable to reflect the changes
                     jTable1.setValueAt("Cancelled", selectedRow, 4);
                 }
             } catch (NumberFormatException e) {
-                // Handle the exception, e.g., display an error message
-                JOptionPane.showMessageDialog(this, "Invalid appointment ID.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Invalid Appointment ID.", "Update Appointment", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jTable1MouseClicked

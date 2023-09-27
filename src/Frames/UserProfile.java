@@ -15,18 +15,23 @@ public class UserProfile extends javax.swing.JPanel {
 
     public UserProfile() {
         initComponents();
+
+        // retrive the user_id of the user who logged in
         UserID userManager = UserID.getInstance();
-        int userid = userManager.getUserID();
+        int userID = userManager.getUserID();
 
         try {
+            // establish connection to MySQL database
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/appointment_system", "root", "");
             Statement stmt = con.createStatement();
-            if (userid == 0) {
+            if (userID == 0) {
                 JOptionPane.showMessageDialog(null, "Error retrieving user_id.", "User Profile", JOptionPane.ERROR_MESSAGE);
             } else {
-                ResultSet rs = stmt.executeQuery("SELECT * FROM user_account WHERE user_ID = " + userid);
+                // sql query to retrieve all user data from the database
+                ResultSet rs = stmt.executeQuery("SELECT * FROM user_account WHERE user_ID = " + userID);
 
+                // display the data in jtextfield
                 while (rs.next()) {
                     firstName.setText(rs.getString("first_name"));
                     lastName.setText(rs.getString("last_name"));
@@ -36,12 +41,10 @@ public class UserProfile extends javax.swing.JPanel {
                     password.setText(rs.getString("password"));
                 }
             }
-
             con.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     @SuppressWarnings("unchecked")
@@ -253,6 +256,7 @@ public class UserProfile extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+        // get the data entered
         String lastNameText = lastName.getText();
         String firstNameText = firstName.getText();
         String phoneNumberText = phoneNumber.getText();
@@ -260,9 +264,11 @@ public class UserProfile extends javax.swing.JPanel {
         String usernameText = username.getText();
         String passwordText = password.getText().toString();
 
+        // checks if all fields are not empty
         if (lastNameText.isEmpty() || firstNameText.isEmpty() || phoneNumberText.isEmpty() || emailAddressText.isEmpty() || usernameText.isEmpty() || passwordText.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please fill in all fields.", "User Profile", JOptionPane.ERROR_MESSAGE);
         } else {
+            // pass the value retrieved to update the user account
             UpdateAccount updateData = new UpdateAccount();
             updateData.update(lastNameText, firstNameText, phoneNumberText, emailAddressText, usernameText, passwordText);
         }
@@ -282,7 +288,6 @@ public class UserProfile extends javax.swing.JPanel {
             password.setEchoChar('*');
         }
     }//GEN-LAST:event_showPasswordActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
