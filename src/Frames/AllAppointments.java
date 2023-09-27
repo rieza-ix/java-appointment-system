@@ -1,11 +1,14 @@
 package Frames;
 
 import Functions.Frame;
+import Functions.UpdateAppointmentStatus;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,10 +26,10 @@ public class AllAppointments extends javax.swing.JPanel {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/appointment_system", "root", "");
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT client, date, time, purpose, status FROM appointment ORDER BY date, time ASC");
+            ResultSet rs = stmt.executeQuery("SELECT appointment_id, client, date, time, purpose, status FROM appointment ");
 
             while (rs.next()) {
-                model.addRow(new Object[]{rs.getString("client"), rs.getString("date"), rs.getString("time"), rs.getString("purpose"), rs.getString("status")});
+                model.addRow(new Object[]{rs.getString("client"), rs.getString("date"), rs.getString("time"), rs.getString("purpose"), rs.getString("status"), rs.getString("appointment_id"), rs.getString("appointment_id")});
             }
 
             con.close();
@@ -60,11 +63,11 @@ public class AllAppointments extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Client", "Date", "Time", "Purpose", "Status"
+                "Client", "Date", "Time", "Purpose", "Status", "APPROVE", "CANCEL"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -72,14 +75,22 @@ public class AllAppointments extends javax.swing.JPanel {
             }
         });
         jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
+        jTable1.setColumnSelectionAllowed(true);
         jTable1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         jTable1.setGridColor(java.awt.SystemColor.control);
         jTable1.setRowHeight(20);
         jTable1.setShowHorizontalLines(true);
         jTable1.getTableHeader().setReorderingAllowed(false);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
+        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(300);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(150);
+            jTable1.getColumnModel().getColumn(3).setPreferredWidth(150);
         }
 
         jPanel1.setBackground(new java.awt.Color(202, 70, 2));
@@ -186,6 +197,39 @@ public class AllAppointments extends javax.swing.JPanel {
         JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
         currentFrame.dispose();
     }//GEN-LAST:event_profileMouseClicked
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int selectedRow = jTable1.getSelectedRow();
+        int clickedColumn = jTable1.columnAtPoint(evt.getPoint()); // Get the clicked column
+
+        if (selectedRow != -1) {
+            try {
+                // Get the appointment_id from the selected row and parse it to an integer
+                String appointmentIdStr = (String) jTable1.getValueAt(selectedRow, 5); // Assuming appointment_id is in the sixth column
+                int appointmentId = Integer.parseInt(appointmentIdStr);
+
+                // Check if the clicked column is the 5th column (APPROVE column)
+                if (clickedColumn == 5) {
+                    // Update the status to "Approved" in the database
+                    UpdateAppointmentStatus update = new UpdateAppointmentStatus();
+                    update.updateAppointment(appointmentId, "Approved");
+
+                    // Update the JTable to reflect the change
+                    jTable1.setValueAt("Approved", selectedRow, 4);
+                } else if (clickedColumn == 6) {
+                    // Update the status to "Cancelled" in the database
+                    UpdateAppointmentStatus update = new UpdateAppointmentStatus();
+                    update.updateAppointment(appointmentId, "Cancelled");
+
+                    // Update the JTable to reflect the change
+                    jTable1.setValueAt("Cancelled", selectedRow, 4);
+                }
+            } catch (NumberFormatException e) {
+                // Handle the exception, e.g., display an error message
+                JOptionPane.showMessageDialog(this, "Invalid appointment ID.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel home;
