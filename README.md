@@ -1,11 +1,11 @@
-<h1>
+<h2>
     📁Appointment System
-    <img src="https://badgen.net/badge/status/finished/blue" />
-</h1>
+    <img width="20%" style="vertical-align:middle" src="https://badgen.net/badge/status/finished/blue" />
+</h2>
 
 📝 A simple appointment system designed to streamline the process of scheduling and managing appointments allows users to easily book appointments with businesses, professionals, or service providers. Users can choose their preferred date and time slots, and businesses/admins can choose to either approve or cancel the appointment. This efficient system enhances communication, reduces scheduling conflicts, and provides a convenient way for customers and businesses to keep track of their appointments, ensuring a smooth and organized appointment booking experience.
 
-# 💻 Technologies
+## 💻 Technologies
 
 <p align="left">
     <img width="5.6%" align="center" src="https://www.svgrepo.com/show/303388/java-4-logo.svg">
@@ -17,7 +17,7 @@
     <img width="3.6%" align="center" src="https://www.apachefriends.org/images/xampp-logo-ac950edf.svg">
 </p>
 
-# 📖 Manual
+## 📖 Manual
 - Install the project
     > - clone this repository https://github.com/rieza-ix/java-appointment-system
 
@@ -28,7 +28,7 @@
 - Run the project
     > navigate to 'App.java' file inside the 'src' folder and run the code
 
-# ✨ Features
+## ✨ Features
 - The admin can register an account for the client, and the client itself can create its own account.
 <img width="50%" src="./assets/snapshots/registration-form.png" />
 - Both admins and users can update their own account details.

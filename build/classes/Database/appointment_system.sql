@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2023 at 07:31 AM
+-- Generation Time: Oct 06, 2023 at 06:41 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.3.33
 
@@ -60,7 +60,7 @@ CREATE TABLE `user_account` (
 --
 
 INSERT INTO `user_account` (`user_id`, `last_name`, `first_name`, `phone_number`, `email_address`, `username`, `password`, `role`) VALUES
-(1, 'Admin', 'Secretary', '09999999999', 'youremail@gmail.com', 'Admin', 'Admin12345', 'Client');
+(1, '1', 'Admin', '09xxxxxxxxx', 'email@address.com', 'Admin', 'Admin12345', 'Admin');
 
 --
 -- Indexes for dumped tables
