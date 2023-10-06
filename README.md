@@ -8,10 +8,10 @@
 # 💻 Technologies
 
 <p align="left">
-    <img width="5.2%" align="center" src="https://www.svgrepo.com/show/303388/java-4-logo.svg">
-    <img width="6.4%" align="center" src="https://www.qfs.de/fileadmin/_processed_/8/0/csm_java-swing_c77435cfa9.png">
+    <img width="5.6%" align="center" src="https://www.svgrepo.com/show/303388/java-4-logo.svg">
+    <img width="6.8%" align="center" src="https://www.qfs.de/fileadmin/_processed_/8/0/csm_java-swing_c77435cfa9.png">
     <img width="5%" align="center" src="https://www.sitesbay.com/awt/files/sublogo.png">
-    <img width="6.6%" align="center" src="https://pbs.twimg.com/media/FkApeNZWAAAdE8l.png">
+    <img width="6.4%" align="center" src="https://pbs.twimg.com/media/FkApeNZWAAAdE8l.png">
     <img width="7.8%" align="center" src="https://www.svgrepo.com/show/303251/mysql-logo.svg">
     <img width="3.5%" align="center" src="https://seeklogo.com/images/N/netbeans-logo-335EBA952E-seeklogo.com.png">
     <img width="3.6%" align="center" src="https://www.apachefriends.org/images/xampp-logo-ac950edf.svg">
