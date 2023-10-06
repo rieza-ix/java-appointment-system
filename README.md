@@ -1,6 +1,6 @@
 <h2>
     📁Appointment System
-    <img width="20%" style="vertical-align:middle" src="https://badgen.net/badge/status/finished/blue" />
+    <img width="10%" style="vertical-align:middle" src="https://badgen.net/badge/status/finished/blue" />
 </h2>
 
 📝 A simple appointment system designed to streamline the process of scheduling and managing appointments allows users to easily book appointments with businesses, professionals, or service providers. Users can choose their preferred date and time slots, and businesses/admins can choose to either approve or cancel the appointment. This efficient system enhances communication, reduces scheduling conflicts, and provides a convenient way for customers and businesses to keep track of their appointments, ensuring a smooth and organized appointment booking experience.
