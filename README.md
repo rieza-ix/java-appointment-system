@@ -30,12 +30,12 @@
 
 # ✨ Features
 - The admin can register an account for the client, and the client itself can create its own account.
-<img width="60%" src="./assets/snapshots/registration-form.png" />
+<img width="50%" src="./assets/snapshots/registration-form.png" />
 - Both admins and users can update their own account details.
-<img width="60%" src="./assets/snapshots/user-profile.png" />
+<img width="50%" src="./assets/snapshots/user-profile.png" />
 - The user can book an appointment, but it is pending approval from the admin.
 <br>
 - The user can view their upcoming appointments or cancelled appointments.
-<img width="60%" src="./assets/snapshots/book-appointment.png" />
+<img width="50%" src="./assets/snapshots/book-appointment.png" />
 - Admin can add, view, approve, or cancel an appointment.
-<img width="60%" src="./assets/snapshots/approve-appointment.png" />
+<img width="50%" src="./assets/snapshots/approve-appointment.png" />
