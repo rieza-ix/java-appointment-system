@@ -18,15 +18,22 @@
 </p>
 
 ## 📖 Manual
-- Install the project
-    > - clone this repository https://github.com/rieza-ix/java-appointment-system
+- Install the project.
+    > - Clone this repository: https://github.com/rieza-ix/java-appointment-system
 
     or
 
-    > - download the zip file and unzip the project to your desired location
+    > - Download the zip file and unzip the project file at your desired location.
 
-- Run the project
-    > navigate to 'App.java' file inside the 'src' folder and run the code
+- Set-up database
+    > - In your http://localhost/phpmyadmin/, create a new database and name it 'appointment_system'
+    > - Select the 'appointment_system'
+    > - Click 'Import' in the tabs.
+    > - Click the 'Choose File' button.
+    > - Then select the file from the project folder located in src > Database > appointment_system.sql.
+
+- Run the project.
+    > Navigate to the 'App.java' file inside the 'src' folder and run the code.
 
 ## ✨ Features
 - The admin can register an account for the client, and the client itself can create its own account.
