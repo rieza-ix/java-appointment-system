@@ -18,31 +18,44 @@
 </p>
 
 ## 📖 Manual
+
+- Set-up XAMPP
+
+  > - Download the XAMPP application here: https://www.apachefriends.org/download.html
+  > - Install the application.
+
 - Install the project.
-    > - Clone this repository: https://github.com/rieza-ix/java-appointment-system
 
-    or
+  > - Navigate to your desired path.
+  > - Clone this repository: https://github.com/rieza-ix/java-appointment-system
 
-    > - Download the zip file and unzip the project file at your desired location.
+  or
+
+  > - Download the zip file.
+  > - Unzip the project file at your desired location.
 
 - Set-up database
-    > - In your http://localhost/phpmyadmin/, create a new database and name it 'appointment_system'
-    > - Select the 'appointment_system'
-    > - Click 'Import' in the tabs.
-    > - Click the 'Choose File' button.
-    > - Then select the file from the project folder located in src > Database > appointment_system.sql.
+
+  > - In your http://localhost/phpmyadmin/, create a new database and name it 'appointment_system'
+  > - Select the 'appointment_system'
+  > - Click 'Import' in the tabs.
+  > - Click the 'Choose File' button.
+  > - Then select the file from the project folder located in src > Database > appointment_system.sql.
 
 - Run the project.
-    > Navigate to the 'App.java' file inside the 'src' folder and run the code.
+  > - Open the XAMPP Control Panel.
+  > - Start Apache and MySQL.
+  >   Navigate to the 'App.java' file inside the 'src' folder and run the code.
 
 ## ✨ Features
+
 - The admin can register an account for the client, and the client itself can create its own account.
-<img width="50%" src="./assets/snapshots/registration-form.png" />
+  <img width="50%" src="./assets/snapshots/registration-form.png" />
 - Both admins and users can update their own account details.
-<img width="50%" src="./assets/snapshots/user-profile.png" />
+  <img width="50%" src="./assets/snapshots/user-profile.png" />
 - The user can book an appointment, but it is pending approval from the admin.
-<br>
+  <br>
 - The user can view their upcoming appointments or cancelled appointments.
-<img width="50%" src="./assets/snapshots/book-appointment.png" />
+  <img width="50%" src="./assets/snapshots/book-appointment.png" />
 - Admin can add, view, approve, or cancel an appointment.
-<img width="50%" src="./assets/snapshots/approve-appointment.png" />
+  <img width="50%" src="./assets/snapshots/approve-appointment.png" />
