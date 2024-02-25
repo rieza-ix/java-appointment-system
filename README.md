@@ -10,11 +10,11 @@
 <p align="left">
     <img width="5.6%" align="center" src="https://www.svgrepo.com/show/303388/java-4-logo.svg">
     <img width="6.8%" align="center" src="https://www.qfs.de/fileadmin/_processed_/8/0/csm_java-swing_c77435cfa9.png">
-    <img width="4.8%" align="center" src="https://www.sitesbay.com/awt/files/sublogo.png">
     <img width="6.4%" align="center" src="https://pbs.twimg.com/media/FkApeNZWAAAdE8l.png">
     <img width="7.8%" align="center" src="https://www.svgrepo.com/show/303251/mysql-logo.svg">
-    <img width="3.5%" align="center" src="https://seeklogo.com/images/N/netbeans-logo-335EBA952E-seeklogo.com.png">
+    <img width="7.6%" align="center" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/PhpMyAdmin_logo.svg/2560px-PhpMyAdmin_logo.svg.png">
     <img width="3.6%" align="center" src="https://www.apachefriends.org/images/xampp-logo-ac950edf.svg">
+    <img width="3.5%" align="center" src="https://seeklogo.com/images/N/netbeans-logo-335EBA952E-seeklogo.com.png">
 </p>
 
 ## 📖 Manual
@@ -46,16 +46,3 @@
   > - Open the XAMPP Control Panel.
   > - Start Apache and MySQL.
   >   Navigate to the 'App.java' file inside the 'src' folder and run the code.
-
-## ✨ Features
-
-- The admin can register an account for the client, and the client itself can create its own account.
-  <img width="50%" src="./assets/snapshots/registration-form.png" />
-- Both admins and users can update their own account details.
-  <img width="50%" src="./assets/snapshots/user-profile.png" />
-- The user can book an appointment, but it is pending approval from the admin.
-  <br>
-- The user can view their upcoming appointments or cancelled appointments.
-  <img width="50%" src="./assets/snapshots/book-appointment.png" />
-- Admin can add, view, approve, or cancel an appointment.
-  <img width="50%" src="./assets/snapshots/approve-appointment.png" />
