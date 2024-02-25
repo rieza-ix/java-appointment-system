@@ -1,6 +1,7 @@
 package Client;
 
 import Server.Frame;
+import java.awt.Color;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.Statement;
@@ -14,11 +15,14 @@ public class ClientAccounts extends javax.swing.JPanel {
     public ClientAccounts() {
         initComponents();
         displayClientData();
+        
+        clientsTable.getTableHeader().setBackground(new Color(237, 192, 161));
+        clientsTable.setRowHeight(30);
     }
 
     // table
     private void displayClientData() {
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel model = (DefaultTableModel) clientsTable.getModel();
 
         try {
             // establish connection to MySQL database
@@ -44,22 +48,22 @@ public class ClientAccounts extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        clientsTable = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         moduleTitle = new javax.swing.JLabel();
         profile = new javax.swing.JLabel();
         home = new javax.swing.JLabel();
         logout = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1365, 730));
         setMinimumSize(new java.awt.Dimension(831, 520));
         setPreferredSize(new java.awt.Dimension(831, 520));
 
-        jTable1.setBackground(java.awt.SystemColor.control);
-        jTable1.setBorder(null);
-        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(0, 0, 0));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        clientsTable.setBorder(null);
+        clientsTable.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        clientsTable.setForeground(new java.awt.Color(0, 0, 0));
+        clientsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -75,19 +79,20 @@ public class ClientAccounts extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
-        jTable1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        jTable1.setGridColor(java.awt.SystemColor.control);
-        jTable1.setRowHeight(20);
-        jTable1.setShowHorizontalLines(true);
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(180);
+        clientsTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
+        clientsTable.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        clientsTable.setGridColor(java.awt.SystemColor.control);
+        clientsTable.setRowHeight(20);
+        clientsTable.setSelectionBackground(new java.awt.Color(237, 192, 161));
+        clientsTable.setShowHorizontalLines(true);
+        clientsTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(clientsTable);
+        if (clientsTable.getColumnModel().getColumnCount() > 0) {
+            clientsTable.getColumnModel().getColumn(0).setResizable(false);
+            clientsTable.getColumnModel().getColumn(1).setResizable(false);
+            clientsTable.getColumnModel().getColumn(2).setResizable(false);
+            clientsTable.getColumnModel().getColumn(3).setResizable(false);
+            clientsTable.getColumnModel().getColumn(3).setPreferredWidth(180);
         }
 
         jPanel1.setBackground(new java.awt.Color(202, 70, 2));
@@ -196,10 +201,10 @@ public class ClientAccounts extends javax.swing.JPanel {
     }//GEN-LAST:event_profileMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable clientsTable;
     private javax.swing.JLabel home;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel logout;
     private javax.swing.JLabel moduleTitle;
     private javax.swing.JLabel profile;

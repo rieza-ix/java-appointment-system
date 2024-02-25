@@ -4,6 +4,7 @@ import Server.BookAppointment;
 import Server.Frame;
 import Server.GetClientName;
 import Server.UserSession;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -21,10 +22,16 @@ public class ClientDashboard extends javax.swing.JPanel {
         initComponents();
         upcomingAppointments();
         cancelledAppointments();
+        
+        upcomingAppointmentsTable.getTableHeader().setBackground(new Color(237, 192, 161));
+        upcomingAppointmentsTable.setRowHeight(30);
+        
+        cancelledAppointmentsTable.getTableHeader().setBackground(new Color(237, 192, 161));
+        cancelledAppointmentsTable.setRowHeight(30);
     }
 
     private void upcomingAppointments() {
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel model = (DefaultTableModel) upcomingAppointmentsTable.getModel();
         // get the user_id of the user who logged in
         UserSession userManager = UserSession.getInstance();
         int userID = userManager.getUserID();
@@ -51,7 +58,7 @@ public class ClientDashboard extends javax.swing.JPanel {
     }
 
     private void cancelledAppointments() {
-        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        DefaultTableModel model = (DefaultTableModel) cancelledAppointmentsTable.getModel();
         // get the user_id of the user who logged in
         UserSession userManager = UserSession.getInstance();
         int userID = userManager.getUserID();
@@ -84,7 +91,7 @@ public class ClientDashboard extends javax.swing.JPanel {
         upcomingContainer = new javax.swing.JPanel();
         upcomingContainerTitle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        upcomingAppointmentsTable = new javax.swing.JTable();
         navBar = new javax.swing.JPanel();
         moduleTitle = new javax.swing.JLabel();
         logout = new javax.swing.JLabel();
@@ -101,25 +108,25 @@ public class ClientDashboard extends javax.swing.JPanel {
         cancelledContainer = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        cancelledAppointmentsTable = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1365, 730));
         setMinimumSize(new java.awt.Dimension(831, 520));
         setPreferredSize(new java.awt.Dimension(831, 520));
 
-        upcomingContainer.setBackground(java.awt.SystemColor.control);
+        upcomingContainer.setBackground(new java.awt.Color(255, 255, 255));
         upcomingContainer.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
 
+        upcomingContainerTitle.setBackground(new java.awt.Color(255, 255, 255));
         upcomingContainerTitle.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
         upcomingContainerTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         upcomingContainerTitle.setText("Upcoming Appointments");
         upcomingContainerTitle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jTable1.setBackground(java.awt.SystemColor.control);
-        jTable1.setBorder(null);
-        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        upcomingAppointmentsTable.setBorder(null);
+        upcomingAppointmentsTable.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        upcomingAppointmentsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -135,11 +142,12 @@ public class ClientDashboard extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setGridColor(java.awt.SystemColor.control);
-        jTable1.setRowHeight(20);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(200);
+        upcomingAppointmentsTable.setGridColor(java.awt.SystemColor.control);
+        upcomingAppointmentsTable.setRowHeight(20);
+        upcomingAppointmentsTable.setSelectionBackground(new java.awt.Color(237, 192, 161));
+        jScrollPane1.setViewportView(upcomingAppointmentsTable);
+        if (upcomingAppointmentsTable.getColumnModel().getColumnCount() > 0) {
+            upcomingAppointmentsTable.getColumnModel().getColumn(2).setPreferredWidth(200);
         }
 
         javax.swing.GroupLayout upcomingContainerLayout = new javax.swing.GroupLayout(upcomingContainer);
@@ -291,17 +299,16 @@ public class ClientDashboard extends javax.swing.JPanel {
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
-        cancelledContainer.setBackground(java.awt.SystemColor.control);
+        cancelledContainer.setBackground(new java.awt.Color(255, 255, 255));
         cancelledContainer.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Cancelled Appointments");
 
-        jTable2.setBackground(java.awt.SystemColor.control);
-        jTable2.setBorder(null);
-        jTable2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        cancelledAppointmentsTable.setBorder(null);
+        cancelledAppointmentsTable.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        cancelledAppointmentsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -317,11 +324,12 @@ public class ClientDashboard extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jTable2.setGridColor(java.awt.SystemColor.control);
-        jTable2.setRowHeight(20);
-        jScrollPane2.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(2).setPreferredWidth(200);
+        cancelledAppointmentsTable.setGridColor(java.awt.SystemColor.control);
+        cancelledAppointmentsTable.setRowHeight(20);
+        cancelledAppointmentsTable.setSelectionBackground(new java.awt.Color(237, 192, 161));
+        jScrollPane2.setViewportView(cancelledAppointmentsTable);
+        if (cancelledAppointmentsTable.getColumnModel().getColumnCount() > 0) {
+            cancelledAppointmentsTable.getColumnModel().getColumn(2).setPreferredWidth(200);
         }
 
         javax.swing.GroupLayout cancelledContainerLayout = new javax.swing.GroupLayout(cancelledContainer);
@@ -415,6 +423,7 @@ public class ClientDashboard extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bookAppointmentButton;
     private javax.swing.JPanel bookForm;
+    private javax.swing.JTable cancelledAppointmentsTable;
     private javax.swing.JPanel cancelledContainer;
     private com.toedter.calendar.JDateChooser date;
     private javax.swing.JLabel dateLabel;
@@ -422,8 +431,6 @@ public class ClientDashboard extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JLabel logout;
     private javax.swing.JLabel moduleTitle;
     private javax.swing.JPanel navBar;
@@ -432,6 +439,7 @@ public class ClientDashboard extends javax.swing.JPanel {
     private javax.swing.JLabel purposeLabel;
     private javax.swing.JFormattedTextField time;
     private javax.swing.JLabel timeLabel;
+    private javax.swing.JTable upcomingAppointmentsTable;
     private javax.swing.JPanel upcomingContainer;
     private javax.swing.JLabel upcomingContainerTitle;
     // End of variables declaration//GEN-END:variables

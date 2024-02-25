@@ -22,6 +22,7 @@ public class ConnectDatabase {
 
         } catch (SQLException e) {
             isConnected = false;
+            System.out.print(e);
         }
         return con;
     }

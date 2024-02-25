@@ -51,6 +51,9 @@ public class UserProfile extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        navBar = new javax.swing.JPanel();
+        moduleTitle = new javax.swing.JLabel();
+        logout = new javax.swing.JLabel();
         registrationForm = new javax.swing.JPanel();
         fNameLabel = new javax.swing.JLabel();
         firstName = new javax.swing.JTextField();
@@ -74,6 +77,42 @@ public class UserProfile extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(1365, 370));
         setMinimumSize(new java.awt.Dimension(831, 520));
         setPreferredSize(new java.awt.Dimension(831, 520));
+
+        navBar.setBackground(new java.awt.Color(202, 70, 2));
+        navBar.setToolTipText("");
+        navBar.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+
+        moduleTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        moduleTitle.setForeground(new java.awt.Color(255, 255, 255));
+        moduleTitle.setText("Dashboard");
+        moduleTitle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        logout.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        logout.setForeground(new java.awt.Color(255, 255, 255));
+        logout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logout.setText("Log out");
+        logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout navBarLayout = new javax.swing.GroupLayout(navBar);
+        navBar.setLayout(navBarLayout);
+        navBarLayout.setHorizontalGroup(
+            navBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(navBarLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(moduleTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 590, Short.MAX_VALUE)
+                .addComponent(logout)
+                .addGap(50, 50, 50))
+        );
+        navBarLayout.setVerticalGroup(
+            navBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(moduleTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         registrationForm.setBackground(new java.awt.Color(255, 255, 255));
         registrationForm.setMinimumSize(new java.awt.Dimension(430, 100));
@@ -154,7 +193,7 @@ public class UserProfile extends javax.swing.JPanel {
         registrationFormLayout.setHorizontalGroup(
             registrationFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(registrationFormLayout.createSequentialGroup()
-                .addGap(55, 55, 55)
+                .addGap(66, 66, 66)
                 .addGroup(registrationFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(showPassword)
                     .addGroup(registrationFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -184,12 +223,12 @@ public class UserProfile extends javax.swing.JPanel {
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, registrationFormLayout.createSequentialGroup()
                                     .addGap(12, 12, 12)
                                     .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         registrationFormLayout.setVerticalGroup(
             registrationFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(registrationFormLayout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addGap(53, 53, 53)
                 .addGroup(registrationFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -219,7 +258,7 @@ public class UserProfile extends javax.swing.JPanel {
                 .addGroup(registrationFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         logoContainer.setBackground(new java.awt.Color(255, 255, 255));
@@ -246,12 +285,19 @@ public class UserProfile extends javax.swing.JPanel {
                 .addComponent(logoContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(registrationForm, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addGap(9, 9, 9))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(navBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(logoContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
-            .addComponent(registrationForm, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(navBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(registrationForm, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+                    .addComponent(logoContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -274,6 +320,21 @@ public class UserProfile extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_registerButtonActionPerformed
 
+    private void showPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPasswordActionPerformed
+        if (showPassword.isSelected()) {
+            password.setEchoChar((char) 0);
+        } else {
+            password.setEchoChar('*');
+        }
+    }//GEN-LAST:event_showPasswordActionPerformed
+
+    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
+        Frame frame = new Frame();
+        frame.viewFrame("Client.LoginForm", "Appointment System");
+        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        currentFrame.dispose();
+    }//GEN-LAST:event_logoutMouseClicked
+
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         UserSession userManager = UserSession.getInstance();
         String userRole = userManager.getUserRole();
@@ -289,14 +350,6 @@ public class UserProfile extends javax.swing.JPanel {
         currentFrame.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
-    private void showPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPasswordActionPerformed
-        if (showPassword.isSelected()) {
-            password.setEchoChar((char) 0);
-        } else {
-            password.setEchoChar('*');
-        }
-    }//GEN-LAST:event_showPasswordActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
     private javax.swing.JTextField emailAddress;
@@ -308,6 +361,9 @@ public class UserProfile extends javax.swing.JPanel {
     private javax.swing.JTextField lastName;
     private javax.swing.JLabel logo;
     private javax.swing.JPanel logoContainer;
+    private javax.swing.JLabel logout;
+    private javax.swing.JLabel moduleTitle;
+    private javax.swing.JPanel navBar;
     private javax.swing.JLabel pNumberLabel;
     private javax.swing.JPasswordField password;
     private javax.swing.JLabel passwordLabel;
